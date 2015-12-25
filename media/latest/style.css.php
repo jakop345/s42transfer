@@ -2115,6 +2115,14 @@ td.here-enter {
   margin-left: 0;
   padding: 0;
   width: 42.6%;
+  padding: 1%;
+   color: <?php echo $cfg['main_color'];?>;
+  
+   
+}
+.ad_link{
+	 font-weight: bold;
+	 font-size: 17px;
 }
 .ad_gen_left select {
   padding: 1.5% 2%;
