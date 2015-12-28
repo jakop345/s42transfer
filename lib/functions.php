@@ -760,7 +760,7 @@ jirafeau_admin_list_custom ($name, $file_hash, $link_hash,$action, $action_list=
 			   <form action = "admin.php" method = "get">
                    <input type = "hidden" name = "action" value = "order_by_val"/>				  
                    <input type = "hidden" name = "order_by" value ="<?php echo $order_by;?>"/>				  
-                   <input type = "submit" class="style_none size_bn_<?php echo $order_by;?>" value = "Size" />
+                   <input type = "submit" class="style_none size_bn_<?php echo $order_by;?>" value = "Size"  title="<?php echo t('Size'); ?> "/>
 				</form>	
 			  </div>
 			   
@@ -798,7 +798,7 @@ jirafeau_admin_list_custom ($name, $file_hash, $link_hash,$action, $action_list=
 		  //echo $file_d['file_name']."    ";.
 		  ?>
 		  <div class="ad_single_cover" style="background:#ccc; margin-bottom:10px;">
-		  <a  target="_blank" href="<?php echo $cfg['web_root'].'f.php?h='.$file_d['hash_code'];?>">
+		  <a title="<?php echo t('Download'); ?>" target="_blank" href="<?php echo $cfg['web_root'].'f.php?h='.$file_d['hash_code'];?>">
 		      <div class="ad_file_name ad_link"> 
 			     <!--form action = "f.php?h=<?php //echo $file_d['hash_code']; ?>&amp;d=1" method = "post">
                  <input type = "hidden" name = "action" value = "download"/>
@@ -838,14 +838,14 @@ jirafeau_admin_list_custom ($name, $file_hash, $link_hash,$action, $action_list=
 					<form action = "admin.php" method = "post">
 							<input type = "hidden" name = "action" value = "delete_link"/>
 							<input type = "hidden" name = "link" value = "<?php echo $file_d['hash_code']; ?>"/>
-							<input type = "submit" value = "<?php echo t('Del link')?>" />
+							<input type = "submit" value = "<?php echo t('Del link')?>" title="<?php echo t('Delete link'); ?>" />
 					</form>
 				</div>
 				<div class="ad_file_act_del">
 					 <form action = "admin.php" method = "post">
 						 <input type = "hidden" name = "action" value = "delete_file"/>
 						 <input type = "hidden" name = "md5" value = "<?php echo $file_d['md5']?>"/>
-						 <input type = "submit" value = "<?php echo t('Del file and links')?>" />
+						 <input type = "submit" value = "<?php echo t('Del file and links')?>" title="<?php echo t('Delete file and links'); ?>" />
 					</form>
 			    </div>
 			  </div>

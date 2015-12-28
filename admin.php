@@ -166,7 +166,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 			  <div class="logout">
 				 <form action = "<?php echo basename(__FILE__); ?>" method = "post">
 					<input type = "hidden" name = "action" value = "logout" />
-					<input type = "submit" value = "<?php echo t('Logout'); ?>" />
+					<input type = "submit" value = "<?php echo t('Logout'); ?>"  title="<?php echo t('Logout'); ?>"/>
 				</form>
 			  </div>
 				  
@@ -187,7 +187,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 																			
 																			
 									</select>
-								<input type = "submit" value = "<?php echo t('Ok'); ?>" />
+								<input type = "submit" value = "<?php echo t('Ok'); ?>" title="<?php echo t('Submit'); ?>" />
 							</form>
 						</div>
 						
@@ -203,7 +203,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 										<option value="search_link"> Link</option>
 									</select>
 								</div>
-								<input type = "submit" value = "<?php echo t('Search'); ?>" />
+								<input type = "submit" value = "<?php echo t('Search'); ?>"  title="<?php echo t('Search'); ?>"/>
 							</form>
 						</div>
 					</div>	
