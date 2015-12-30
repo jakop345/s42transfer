@@ -24,7 +24,9 @@
  * @return path finishing with a '/'
  */
  
-require (JIRAFEAU_ROOT . 'lib/config.local.php'); 
+if(isset($cfg['web_root']) && $cfg['web_root'] !=""){
+require_once (JIRAFEAU_ROOT . 'lib/config.local.php'); 	
+}
 function
 s2p ($s)
 {
