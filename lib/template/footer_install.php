@@ -1,5 +1,5 @@
 <div class="footer-install">	
-	<div class="footer-logo"></div>
+	<div class="footer-logo" id="footer-logo"></div>
 	<div id="copyright">
 		<p>
 			<br />

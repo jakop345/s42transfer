@@ -119,10 +119,10 @@ $cfg['main_color_light']="#01cefe";
 $cfg['bg_gradient_color1']="#04cdf7"; 
 $cfg['bg_gradient_color2']="#66b754";
 
-$cfg['logo']="logo.png";
-$cfg['logo_resolation']="logo.png";
-$cfg['favicon']="favicon.ico";
-$cfg['touchicon']="";
+$cfg['logo']="Logo_Normal.png";
+$cfg['logo_resolation']="Logo_Retina.png";
+$cfg['favicon']="favicon.png";
+$cfg['touchicon']="S42_Touchicon_neu_144.png";
 
 $cfg['temp1']="1000";
 $cfg['temp2']="";

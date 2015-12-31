@@ -340,17 +340,27 @@
 						data: str,
 						cache: false,
 						success: function(result){								
-						   $("#del_message").html(result).show();
+						   //$("#del_message").html(result).show();
 						   
 						   if(result !=""){ 
-								var seconds = 4;
-								$("#dvCountDown").show();
+								var seconds = 2;
+								$("#upload_finished").hide();
+								$("#upload_finished").html("");
+								$("#upload_finished").css("height","0px");
+								$("#upload_finished").css("min-height","0px");
+								$("#upload_finished").css("width","0px");
+								$("#del_done").show();								
+								
+								$("#dvCountDown_done_del").show();
 								$("#lblCount").html(seconds);
+								
 								setInterval(function () {
+								  $("#upload_finished").hide();
 									seconds--;
 									$("#lblCount").html(seconds);
+									
 									if (seconds == 0) {
-										$("#dvCountDown").hide();
+										
 										window.location = siteUrl;
 									}
 								}, 1000);
@@ -367,7 +377,9 @@
 				 $("#upload_done").hide();
 				 $("#upload_finished").show();			
 					
-             });						 
+             });	
+			
+			
 			
 			//Uploading cancel
 			$("body").on( 'click', '.upload_cancel_btn', function() {

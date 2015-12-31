@@ -620,9 +620,9 @@ elseif (isset ($_GET['end_async']))
 			 //Delete Link 
 			if(!empty($dnld_dlt_link_1)){
 			 echo '<div class="delete_links">';
-				echo '<div id="dvCountDown" style="display: none">
-					You will be redirected after <span id="lblCount"></span> seconds. if not click <a class="if_not_redirect_af_del"  href="'.$cfg['web_root'].'" >here</a>
-					</div>';			 
+				//echo '<div id="dvCountDown" style="display: none">
+					//You will be redirected after <span id="lblCount"></span> seconds. if not click <a class="if_not_redirect_af_del"  href="'.$cfg['web_root'].'" >here</a>
+					//</div>';			 
 			   echo '<span id="del_message"></span>';
 			  //$h = $cfg['web_root'].'f.php?h='.$dnld_link_1.'';
 			  $h = 'h='.$dnld_link_1.'';
@@ -712,9 +712,9 @@ elseif (isset ($_GET['end_classic']))
 			 //Delete Link 
 			if(!empty($link_del_list_all)){
 			 echo '<div class="delete_links">';
-				echo '<div id="dvCountDown" style="display: none">
-					You will be redirected after <span id="lblCount"></span> seconds.
-					</div>';			 
+				//echo '<div id="dvCountDown" style="display: none">
+					//You will be redirected after <span id="lblCount"></span> seconds.
+					//</div>';			 
 			   echo '<span id="del_message"></span>';
 			  //$h = $cfg['web_root'].'f.php?h='.$dnld_link_1.'';
 			  $h = 'h='.$link_list_all.'';

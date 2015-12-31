@@ -32,9 +32,9 @@
 
 	$cfg['bg_gradient_color1']="#04cdf7"; 
 	$cfg['bg_gradient_color2']="#66b754";
-	$cfg['logo']="";
-	$cfg['logo_retina']="";
-	$cfg['logo_resolation']="";
+	$cfg['logo']="Logo_Normal.png";
+	$cfg['logo_retina']="Logo_Retina.png";
+	$cfg['logo_resolation']="Logo_Retina.png";
 	
 	$cfg['typekit_normal']="Arial";
 	$cfg['typekit_bold']="Arial";
@@ -466,7 +466,12 @@ body._drag .bgImg-first::before {
   float: left;
   font-family: <?php echo $typekit_optional;?>;
   width: 30%;
+  margin-right: 0;
+  padding-left: 9px;
+  text-align: left;
+  
 }
+
 #done_files {
   float: right;
   font-family: <?php echo $typekit_optional;?>;
@@ -500,7 +505,7 @@ body._drag .bgImg-first::before {
   width: 100%;
 }
 .files_remaing {
-  border-bottom: 1px solid #808080;
+  border-bottom: 0px solid #808080;
   float: left;
   font-size: 13px;
   padding: 1.6% 0;
@@ -740,6 +745,10 @@ send_txt input{
   background: #134953 url("done.svg") no-repeat scroll center 35%;
   background-size: 44%;
 }
+.done_del_image {
+  background: #134953 url("done_del.svg") no-repeat scroll center 35%;
+  background-size: 44%;
+}
 }
 /* Chrome - Safari Specific CSS  ENDS*/
 
@@ -943,7 +952,7 @@ send_txt input{
   text-align: center;
   width: 100%;
 }
-p.access_error, p.wrong-password, .done_txt, #dvCountDown_done, .cancel_txt, .sent_txt {
+p.access_error, p.wrong-password, .done_txt, #dvCountDown_done, .dvCountDown_done, .cancel_txt, .sent_txt {
   color: #ffffff;
   font-size: 32px;
   line-height: 1.2em;
@@ -951,8 +960,12 @@ p.access_error, p.wrong-password, .done_txt, #dvCountDown_done, .cancel_txt, .se
   padding: 0;
   text-align: center;
 }
-.done_txt, #dvCountDown_done{
+.done_txt, #dvCountDown_done, .dvCountDown_done{
   line-height: 1.5em;
+}
+.del_set{
+	 float: left;
+     width: 100%;
 }
 .file_not_found .error_conttent .access_error {
   float: left;
@@ -968,7 +981,10 @@ p.access_error, p.wrong-password, .done_txt, #dvCountDown_done, .cancel_txt, .se
 a.if_not_redirect {
   color: <?php echo $cfg['main_color_light'];?>;
 }
-p.wrong-password, #dvCountDown_done, .link-expire, .link-expire2, .cancel_txt_below, .sent_txt_below{
+a.if_not_redirect_after_delete{
+	 color: <?php echo $cfg['main_color_light'];?>;
+}
+p.wrong-password, #dvCountDown_done, .link-expire, .link-expire2, .cancel_txt_below, .sent_txt_below, .dvCountDown_done{
   font-size: 17px; 
   color: <?php echo $cfg['main_color_light'];?>;
   
@@ -986,7 +1002,16 @@ span.done_txt {
 #dvCountDown_done > span {
   margin-right: 4px;
 }
+
+.dvCountDown_done > span {
+  margin-right: 4px;
+}
+
 #upload_done_download_page {
+  position: relative;
+  top: 6px;
+}
+.upload_done_download_page {
   position: relative;
   top: 6px;
 }
@@ -999,7 +1024,7 @@ span.done_txt {
 #mail_sent {
   background: #134953 url("email.svg") no-repeat scroll center 35%;
 }
-#upload_done, .link-expired{
+#upload_done, .link-expired, #del_done{
   background: #134953;
   border: medium none;
   margin: 0 auto;
@@ -1010,6 +1035,14 @@ span.done_txt {
 }
 .done_image {
   background: #134953 url("done.svg") no-repeat scroll center 35% / 44% auto;
+  float: left;
+  height: 186px;
+  position: relative;
+  top: 30px;
+  width: 100%;
+}
+.done_del_image {
+  background: #134953 url("done_del.svg") no-repeat scroll center 35% / 44% auto;
   float: left;
   height: 186px;
   position: relative;

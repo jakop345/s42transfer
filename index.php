@@ -102,8 +102,8 @@ if (jirafeau_has_upload_password ($cfg))
 }
 
 ?>
-<div id="upload_finished">
-    <div id="upload_finished_download_page">
+<div id="upload_finished" style="display:none;">
+    <div id="upload_finished_download_page">        
 		<p class="upload-complete">
 			  <?php echo t('Upload complete!') ?> 
 			  <!--a id="upload_link_email" href=""><img id="upload_image_email"/></a-->
@@ -111,6 +111,21 @@ if (jirafeau_has_upload_password ($cfg))
 		  <p id="upload_link"></p>
     </div>	
 </div>
+
+
+<!--DELET FILES done-->
+<div id="del_done" class="upload_done" style="display:none;">
+    <div  class="upload_done_download_page">
+	    <span class="done_del_image"></span>
+	    <span class="done_txt">File(s) deleted.</span>
+		<div id="dvCountDown_done_del" class="dvCountDown_done" >
+           <span class="del_set">You will be redirected after <span id = "lblCount"></span> seconds.</span> <span class="del_set_1">if not click <a  href="<?php if(isset($cfg['web_root'])){ echo $cfg['web_root']; }?>" class="if_not_redirect_after_delete">here</a></span>
+        </div>
+    </div>	
+</div>
+
+
+
 
 <!--Uploading done-->
 <div id="upload_done" class="upload_done" style="display:none;">

@@ -47,6 +47,7 @@ else
   <title><?php echo t('s42.transfer, your web file repository'); ?></title>
   <meta http-equiv="Content-Type" content="<?php echo $content_type; ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="<?php echo $cfg['favicon']; ?>" type="image/x-icon" />
   <link href="<?php echo $web_root . 'media/' . $style . '/style.css.php'; ?>" rel="stylesheet" type="text/css" />
   <link href="<?php echo $web_root . 'media/' . $style . '/responsive.css'; ?>" rel="stylesheet" type="text/css" />
   
