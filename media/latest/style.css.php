@@ -1042,7 +1042,7 @@ span.done_txt {
   width: 100%;
 }
 .done_del_image {
-  background: #134953 url("done_del.svg") no-repeat scroll center 35% / 44% auto;
+  background: #134953 url("done_del.svg") no-repeat scroll center 100% / 15% auto;
   float: left;
   height: 186px;
   position: relative;
