@@ -207,6 +207,9 @@ if (isset ($_POST['step']) && isset ($_POST['next']))
 		if(!empty($cfg['sender_email']) && !empty($cfg['sender_name'] )){
 			$cfg['sharing_enable']=true;
 		}
+			$cfg['logo'] = $cfg['web_root'].$cfg['logo'];
+			$cfg['logo_resolation'] = $cfg['web_root'].$cfg['logo_resolation'];
+			$cfg['touchicon'] = $cfg['web_root'].$cfg['touchicon'];
         jirafeau_export_cfg ($cfg);
         break;	
 
