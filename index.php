@@ -313,7 +313,7 @@ if (jirafeau_has_upload_password ($cfg))
         <td><label for="select_time"><?php echo t('Time limit'); ?></label></td>
         <td><select name="time" id="select_time">
         <?php if ($cfg['availabilities']['none']) { ?>
-        <option value="none"><?php echo t('None'); ?></option>
+        <option value="none"><?php echo t('Never'); ?></option>
         <?php } ?>
         <?php if ($cfg['availabilities']['year']) { ?>
         <option value = "year"><?php echo t('One year');?></option>

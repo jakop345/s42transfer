@@ -1,5 +1,7 @@
 <div class="footer admin">	
+  <a href="<?php echo rtrim($cfg['web_root'], '/') . '/admin.php'; ?>">
 	<div class="footer-logo adm-logo"></div>
+	</a>
 	<div id="copyright" class="admin-copy">
 		<p>
 			<br />

@@ -84,8 +84,8 @@ $cfg['availabilities'] = array ('minute' => true,
                                 'day' => true,
                                 'week' => true,
                                 'month' => true,
-                                'year' => false,
-                                'none' => false);
+                                'year' => true,
+                                'none' => true);
 /* Set maximal upload size expressed in MB.
  * 0 mean unlimited upload size.
  */

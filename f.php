@@ -116,6 +116,55 @@ if (!file_exists (VAR_FILES . $p . $link['md5']))
     exit;
 }
 
+
+/**
+Delete fiels after upload FROM SENDER EMAILs
+*/
+if (isset($_GET['del']) && $_GET['del']==1)
+{
+	$delete_code = $_GET['h'];
+	$delete_codeArr = explode('@',$delete_code);
+	foreach($delete_codeArr as $dlt){
+		$link_name = $dlt;
+        jirafeau_delete_link ($link_name);
+	}  
+	 require (JIRAFEAU_ROOT.'lib/template/header.php');
+    //echo t('File(s) has been deleted.ssss'); 
+	?>
+	<script type="text/javascript">
+
+		(function () {
+			var timeLeft = 5,
+				cinterval;
+
+			var timeDec = function (){
+				timeLeft--;
+				document.getElementById('lblCount').innerHTML = timeLeft;
+				if(timeLeft === 0){
+					window.location = "<?php echo $cfg['web_root'];?>";
+				}
+			};
+
+			cinterval = setInterval(timeDec, 1000);
+		})();
+
+</script>
+	<!--DELET FILES done-->	   
+	<div id="del_done" class="upload_done" style="display:block;">
+		<div  class="upload_done_download_page">
+			<span class="done_del_image"></span>
+			<span class="done_txt">File(s) deleted.</span>
+			<div id="dvCountDown_done_del" class="dvCountDown_done" >
+			   <span class="del_set">You will be redirected after <span id = "lblCount"></span> seconds.</span> <span class="del_set_1">if not click <a  href="<?php if(isset($cfg['web_root'])){ echo $cfg['web_root']; }?>" class="if_not_redirect_after_delete">here</a></span>
+			</div>
+		</div>	
+	</div>
+<?php	
+    
+	 require (JIRAFEAU_ROOT.'lib/template/footer.php');
+	 exit;
+}
+
 /**
 Delete fiels after upload
 */

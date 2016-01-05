@@ -572,9 +572,9 @@ elseif (isset ($_GET['end_async']))
 			 
 
 			  echo '<div class="send-links-ht"><div class="download_links">'; 
-			     echo '<span class="download_link"><a target="_blank" href="'.$dwnload_url.'">Downloadpage</a></span>';
+			     echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'">Downloadpage</a></span>';
 				 //echo '<span class="download_link"><a href="'.$cfg['web_root'].'f.php?h='.$dnld_link_1.'&amp;d=1">Direktlink</a></span>';
-				 echo '<span class="download_link"><a href="'. $direct_Dwnload_url.'&amp;d=1">Direktlink</a></span>';
+				 echo '<span class="download_link"><a href="'. $dwnload.'&amp;d=1">Direktlink</a></span>';
 				
 				$counter = 1;
 				 foreach($dnld_link as $view_link){	
@@ -605,7 +605,7 @@ elseif (isset ($_GET['end_async']))
 			 $sharlink_url = get_tiny_url($sharlink);
 			 
 			if(isset($cfg['sharing_enable']) && $cfg['sharing_enable'] ==1){
-			     echo '<div class="send_links"><a  target="_blank" href="'.$sharlink_url.'" >Share your file(s)</a></div>';
+			     echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
 			  }
 			echo '</div>';
 			 
@@ -653,14 +653,14 @@ elseif (isset ($_GET['end_classic']))
 		   if(!empty($link_list_all)){	
 
              $dwnload = $cfg['web_root'].'f.php?h='.$link_list_all; 
-			 $dwnload_url = get_tiny_url($dwnload);
+			// $dwnload_url = get_tiny_url($dwnload);
 			 
-			 $direct_Dwnload = $cfg['web_root'].'f.php?h='.$link_list_all.'&d=1'; 
-			 $direct_Dwnload_url = get_tiny_url($direct_Dwnload);		   
+			 $direct_Dwnload = $cfg['web_root'].'f.php?h='.$link_list_all.'&amp;d=1'; 
+			 //$direct_Dwnload_url = get_tiny_url($direct_Dwnload);		   
 
 			 echo '<div class="send-links-ht"><div class="download_links">'; 
-			 echo '<span class="download_link"><a target="_blank" href="'.$dwnload_url.'">Downloadpage</a></span>';
-			 echo '<span class="download_link"><a href="'.$direct_Dwnload_url.'">Direktlink</a></span>';
+			 echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'">Downloadpage</a></span>';
+			 echo '<span class="download_link"><a href="'.$direct_Dwnload.'">Direktlink</a></span>';
 				
 			//View Link	
 			 $counter = 1;
@@ -696,7 +696,7 @@ elseif (isset ($_GET['end_classic']))
 			  $sharlink_url = get_tiny_url($sharlink);
 			  
 			 if(isset($cfg['sharing_enable']) && $cfg['sharing_enable'] ==1){
-			     echo '<div class="send_links"><a  target="_blank" href="'.$sharlink_url.'" >Share your file(s)</a></div>';
+			     echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
 			  }
 			 
 			echo '</div>';

@@ -119,6 +119,7 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 			
 			$content = '<IfModule mod_rewrite.c>
             		  RewriteEngine on
+					  ErrorDocument 404 '.$cfg['web_root'].'404.php
 						  # Set "protossl" to "s" if we were accessed via https://.  This is used later
 						  # if you enable "www." stripping or enforcement, in order to ensure that
 						  # you don\'t bounce between http and https.
@@ -167,6 +168,7 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 			
 		  $content = '<IfModule mod_rewrite.c>
             		  RewriteEngine on
+					  ErrorDocument 404 '.$cfg['web_root'].'404.php
 						  # Set "protossl" to "s" if we were accessed via https://.  This is used later
 						  # if you enable "www." stripping or enforcement, in order to ensure that
 						  # you don\'t bounce between http and https.
@@ -213,6 +215,7 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 			}
 			$content = '<IfModule mod_rewrite.c>
             		  RewriteEngine on
+					  ErrorDocument 404 '.$cfg['web_root'].'404.php
 						  # Set "protossl" to "s" if we were accessed via https://.  This is used later
 						  # if you enable "www." stripping or enforcement, in order to ensure that
 						  # you don\'t bounce between http and https.
@@ -262,6 +265,7 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 			
 		  $content = '<IfModule mod_rewrite.c>
             		  RewriteEngine on
+					  ErrorDocument 404 '.$cfg['web_root'].'404.php
 						  # Set "protossl" to "s" if we were accessed via https://.  This is used later
 						  # if you enable "www." stripping or enforcement, in order to ensure that
 						  # you don\'t bounce between http and https.

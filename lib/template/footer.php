@@ -1,5 +1,7 @@
 <div class="footer">	
+   <a href="<?php echo rtrim($cfg['web_root'], '/');?>">
 	<div class="footer-logo" id="footer-logo"></div>
+	</a>
 	<div id="copyright">
 		<p>
 			<br />

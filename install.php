@@ -22,6 +22,7 @@ define ('NL', "\n");
 define ('QUOTE', "'");
 
 define ('JIRAFEAU_CFG', JIRAFEAU_ROOT.'lib/config.local.php');
+define ('JIRAFEAU_hta', JIRAFEAU_ROOT.'.htaccess');
 define ('JIRAFEAU_VAR_RAND_LENGTH', 15);
 
 require (JIRAFEAU_ROOT . 'lib/functions.php');
@@ -65,13 +66,33 @@ jirafeau_export_cfg ($cfg)
     fclose ($handle);
 }
 
-//httacess file
+/* httacess file write code into */
+  //empty httacess file
+ function 
+  jirafeau_httacess_empty()
+  {
+    $handle = fopen (JIRAFEAU_hta, 'w');
+     fwrite ($handle, '');	 
+     fclose ($handle);
+  }
+
 function
-jirafeau_export_cfg_httacess ($cfg)
+jirafeau_httacess ($cfg=null)
 {
-    /*$handle = fopen ('.htaccess', 'w');
-     fwrite ($handle, 'null'); fwrite ($handle, ';'.NL);
-     fclose ($handle);*/
+    $handle = fopen (JIRAFEAU_hta, 'w');
+     fwrite ($handle, '<IfModule mod_rewrite.c>');
+     fwrite ($handle, NL);
+	 
+	 fwrite ($handle, 'RewriteEngine on');
+	 fwrite ($handle, NL);
+	 
+	 fwrite ($handle, 'ErrorDocument 404 '.$cfg.'404.php');
+	 fwrite ($handle, NL);
+	 
+	 fwrite ($handle, '</IfModule>');
+	 fwrite ($handle, NL);
+	 
+     fclose ($handle);
 }
 
 function
@@ -165,6 +186,60 @@ if (!is_writable (JIRAFEAU_CFG) && !@chmod (JIRAFEAU_CFG, '0666'))
     exit;
 }
 
+
+
+
+
+
+
+
+/**************htaccess create**************/
+
+if (!file_exists (JIRAFEAU_hta))
+{
+    /* We try to create an empty one. */
+    if (!@touch (JIRAFEAU_hta))
+    {
+        require (JIRAFEAU_ROOT . 'lib/template/header_install.php');
+        echo '<div class="error"><p>' .
+             t('The local configuration file could not be created. Create a ' .
+               '<code>lib/config.local.php</code> file and give the write ' .
+               'permission to the web server (preferred solution), or give the ' .
+               'write permission to the web server on the <code>lib</code> ' .
+               'directory.') .
+             '</p></div>';
+        require (JIRAFEAU_ROOT . 'lib/template/footer_install.php');
+        exit;
+    }
+}
+
+if (!is_writable (JIRAFEAU_hta) && !@chmod (JIRAFEAU_hta, '0666'))
+{
+    require (JIRAFEAU_ROOT . 'lib/template/header_install.php');
+    echo '<div class="error"><p>' .
+         t('The local configuration is not writable by the web server. ' .
+           'Give the write permission to the web server on the ' .
+           '<code>lib/config.local.php</code> file.') .
+         '</p></div>';
+    require (JIRAFEAU_ROOT . 'lib/template/footer_install.php');
+    exit;
+}
+/**************htaccess create**************/
+/**************htaccess create**************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (isset ($_POST['step']) && isset ($_POST['next']))
 {
     switch ($_POST['step'])
@@ -200,6 +275,13 @@ if (isset ($_POST['step']) && isset ($_POST['next']))
 		}
 		
         jirafeau_export_cfg ($cfg);
+		
+		//Empty htaccess file
+		if(file_exists (JIRAFEAU_hta))
+         {
+		  jirafeau_httacess_empty();
+		 }
+		
         break;
 	case 4:
         $cfg['sender_email'] = $_POST['sender_email'];
@@ -210,6 +292,10 @@ if (isset ($_POST['step']) && isset ($_POST['next']))
 			$cfg['logo'] = $cfg['web_root'].$cfg['logo'];
 			$cfg['logo_resolation'] = $cfg['web_root'].$cfg['logo_resolation'];
 			$cfg['touchicon'] = $cfg['web_root'].$cfg['touchicon'];
+			
+			//send root url in httacess file
+			jirafeau_httacess($cfg['web_root']);
+			
         jirafeau_export_cfg ($cfg);
         break;	
 

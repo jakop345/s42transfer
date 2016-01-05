@@ -36,6 +36,9 @@ if($cfg['typekit_fontreplacement']==1){
 	$h = $_POST['web_root'].'f.php?h='.$_POST['file_links'].'&d=1';
 	$direct_Dwnload_url = get_tiny_url($h);
 	
+	$del_url = $_POST['web_root'].'f.php?h='.$_POST['file_links'].'&del=1';
+	
+	
 	
 	
 	$send_lnk="";
@@ -60,6 +63,7 @@ if($cfg['typekit_fontreplacement']==1){
 	               '<p style="width:100%;margin:0px;font-family:'.$typekit_normal.';color:'.$cfg['main_color'].'; font-size: 32px;">sent you some files </p>'.
 	               '<p style="width:100%;color:'.$cfg['main_color'].';font-family:'.$typekit_normal.';font-size: 17px;">'.$snd_msg.'</p>'.
 	               '<p><a style="margin:0px;width:40%;text-align:center;background:'.$cfg['main_color'].';color:'.$cfg['main_color_light'].';padding:10px;text-decoration:none;font-weight:bold;font-size:17px;float:left;font-family:'.$typekit_bold.';cursor:pointer;" href="'.$direct_Dwnload_url.'">Download</a></p>'.
+	               
 	              '</div>'; 
      $send_lnk1 = "";
 	 $send_lnk1 .= '<div style="width:96%;float:left;padding:0 2%;">'.
@@ -75,7 +79,44 @@ if($cfg['typekit_fontreplacement']==1){
 			</div>
 				   </body></html>';	
 				 
-	   $send_lnks = $send_lnk.$send_lnk1;	 
+	   $send_lnks = $send_lnk.$send_lnk1;	
+
+
+/************************** SENDER MAIL TEXT ******************/
+/************************** SENDER MAIL TEXT ******************/
+		
+	 $send_lnk_sender .= '<html><head><title>Send Links</title></head>'.
+	             '<body style="float:left">'.
+				 '<div style="width:100%;float:left">'.		
+				 
+				  '<div style="float:left;padding:2%;width:96%">'.
+	               
+	               '<p style="width:100%;margin:0px;font-family:'.$typekit_normal.';color:'.$cfg['main_color'].'; font-size: 32px;">Files successfully sent to  </p>'.
+				   '<p style="width:100%;margin:0px;padding-bottom:0px;color:'.$cfg['main_color_light'].'!important;font-size: 32px;text-decoration:none;font-family:'.$typekit_normal.';">'.$friend_Emails.'</p>'.
+	               '<p style="width:100%;color:'.$cfg['main_color'].';font-family:'.$typekit_normal.';font-size: 17px;">'.$snd_msg.'</p>'.
+	               '<p style="width:100%; float:left;"><a style="margin:0px;width:40%;text-align:center;background:'.$cfg['main_color'].';color:'.$cfg['main_color_light'].';padding:10px;text-decoration:none;font-weight:bold;font-size:17px;float:left;font-family:'.$typekit_bold.';cursor:pointer;" href="'.$direct_Dwnload_url.'">Download</a></p>'.
+				   
+	               '<p style="width:100%;"><a style="margin:0px;width:40%;text-align:center;background:'.$cfg['main_color'].';color:'.$cfg['main_color_light'].';padding:10px;text-decoration:none;font-weight:bold;font-size:17px;float:left;font-family:'.$typekit_bold.';cursor:pointer;" href="'.$del_url.'">DELETE File(s)</a></p>'.
+	              '</div>'; 
+     $send_lnk1_sender = "";
+	 $send_lnk1_sender .= '<div style="width:96%;float:left;padding:0 2%;">'.
+				   '<p style="color:'.$cfg['main_color'].';font-weight:bold;float:left;width:100%;text-align:right;border-bottom:1px solid '.$cfg['main_color_light'].';padding-bottom: 5px;margin-top:0px;font-family:'.$typekit_bold.';">'.count($link_nameArr).' Files (Total: '.formatSizeUnits($totals).') </p>'.		
+				   '<p>'.$files_html.'</p>'.				   
+				   '</div>'. 
+				   
+	               '<div style="width:96%;float:left;border-top:1px solid '.$cfg['main_color'].';padding-top:1%;margin:4% 2%;">
+				   <abbr style="color:'.$cfg['main_color'].';float:left;text-decoration:none;cursor:default;font-family:'.$typekit_optional.';" title="s42.transfer">s42.transfer</abbr>
+				    
+				    <a style="color:'.$cfg['main_color'].';font-family:'.$typekit_optional.';text-decoration:none;float:right;" href="'.rtrim($cfg['web_root'], '/') . '/tos.php">'.t("&nbsp;| Terms").'</a><a style="color:'.$cfg['main_color'].';text-decoration:none;float:right;font-family:'.$typekit_optional.';" href="https://www.gnu.org/licenses/agpl.html"><abbr style="text-decoration:none;"  title="Affero General Public License">AGPL</abbr>v3</a>
+			</div>
+			</div>
+				   </body></html>';	 
+				 
+	   $send_lnks_sender = $send_lnk_sender.$send_lnk1_sender;
+/************************** SENDER MAIL TEXT ******************/
+/************************** SENDER MAIL TEXT ******************/
+		
+	   
 	
 	 	$to =$friend_Emails;
 		$subject = $your_Email .' has sent you file(s) via s42.transfer';
@@ -89,6 +130,18 @@ if($cfg['typekit_fontreplacement']==1){
 		$headers .= 'From: '.$cfg['sender_name'].'<'.$your_Email.'>' . "\r\n";
 		//$headers = "From: $name <$email>\r\n" 
 		$results = mail($to,$subject,$send_lnks,$headers);
+		
+		
+		/************************** Send Mail to sender*/
+		
+		$subject_sender = 'Thanks for using s42.transfer - file sent to '. $to;
+		$results_sender = mail($your_Email,$subject_sender,$send_lnks_sender,$headers);
+		
+		/************************** Send Mail to sender*/
+		
+		
+		
+		
 		if($results){
 			echo 1;
 		}else{
