@@ -134,7 +134,7 @@ if (isset($_GET['del']) && $_GET['del']==1)
 	<script type="text/javascript">
 
 		(function () {
-			var timeLeft = 5,
+			var timeLeft = 3,
 				cinterval;
 
 			var timeDec = function (){

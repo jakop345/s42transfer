@@ -162,7 +162,7 @@ if (jirafeau_has_upload_password ($cfg))
 			   <div id="uploaded_speed"></div>
 		  </div>
 	<div class="timing-container">
-		 <div class="uploading"> <?php echo t ('Uploading ...'); ?></div>
+		<div class="uploading"> <?php echo t ('Uploading...'); ?></div>
 		<div id="uploaded_percentage" style="display:none;"></div>    
 		<div id="uploaded_percentage_tot" style="display:none;"></div>    
 		<div id="uploaded_size_cal" style=""><span id="up_left_size"></span> of <span id="up_tot_size"></span></div>    

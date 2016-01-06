@@ -89,8 +89,11 @@ function show_link_new (url, reference, date)
 			document.getElementById('date').innerHTML = date;
 			document.getElementById('validity').style.display = '';
 		}
-		else
-			document.getElementById('validity').style.display = 'none';
+		else{
+		   document.getElementById('date').innerHTML = date;
+		   document.getElementById('validity').style.visibility = "hidden";	
+		}
+			
 	
 	
 

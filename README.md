@@ -28,7 +28,7 @@ A demonstration of the latest version is available on [demo.s42.io](http://demo.
 -  Skin
 ...
 
-s42transfer is a fork of the original project [Jyraphe](http://home.gna.org/jyraphe/) based on the 0.5 (stable version) with a **lot** of modifications.
+s42transfer is a fork of the original project [Jirafeau version 1.0](https://gitlab.com/mojo42/Jirafeau) with a lot of modifications.
 
 As it's original project, s42transfer is made in the [KISS](http://en.wikipedia.org/wiki/KISS_principle) way (Keep It Simple, Stupid).
 

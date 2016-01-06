@@ -1234,6 +1234,7 @@ label.emailValid {
   margin-left: 10px;
   word-break: break-all;
   width: 70%;
+  text-decoration:underline;
 }
 .submit_send, .dn_submit { 
   float: left;
