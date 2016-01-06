@@ -574,7 +574,7 @@ elseif (isset ($_GET['end_async']))
 			  echo '<div class="send-links-ht"><div class="download_links">'; 
 			     echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'">'.t('Download page').'</a></span>';
 				 //echo '<span class="download_link"><a href="'.$cfg['web_root'].'f.php?h='.$dnld_link_1.'&amp;d=1">Direktlink</a></span>';
-				 echo '<span class="download_link"><a href="'. $dwnload.'&amp;d=1">'.t('Direct link').'</a></span>';
+				 echo '<span class="download_link"><a href="'. $dwnload.'&amp;d=1">'.t('Direct download').'</a></span>';
 				
 				$counter = 1;
 				 foreach($dnld_link as $view_link){	
@@ -660,7 +660,7 @@ elseif (isset ($_GET['end_classic']))
 
 			 echo '<div class="send-links-ht"><div class="download_links">'; 
 			 echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'"> '.t('Download page').'</a></span>';
-			 echo '<span class="download_link"><a href="'.$direct_Dwnload.'">'.t('Direct link').'</a></span>';
+			 echo '<span class="download_link"><a href="'.$direct_Dwnload.'">'.t('Direct download').'</a></span>';
 				
 			//View Link	
 			 $counter = 1;
