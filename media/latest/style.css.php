@@ -308,14 +308,20 @@ input[type="password"] {
  
   border-left:none;
   border-right:none;
-  padding: 6px 1% !important;
+  padding: 6px 2% !important;
   font-size: 16px !important;
-  width:98%;
+  width:96%;
   background:none;
   
 }
+fieldset.logins-wrapper{
+	width:23.5em;
+}
 .upload-sec-block input[type="text"]{
 	color:#fff;
+}
+.e_txt.sec-pwd{
+color:#fff !important;	
 }
 
 .sec-pwd {

@@ -89,8 +89,8 @@
 							//location.reload();
 							//window.location.href($(".site_url").val());
 							//window.location.replace($(".site_url").val()+'admin.php#tabs1-typekit');
-							 window.location = result+'/admin.php#tabs1-typekit';
-							  //window.location.reload();
+							 //window.location = result+'/admin.php#tabs1-typekit';
+							  window.location.reload();
 							
 						}
 					});	
