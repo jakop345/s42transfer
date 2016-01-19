@@ -320,7 +320,7 @@ fieldset.logins-wrapper{
 .upload-sec-block input[type="text"]{
 	color:#fff;
 }
-.e_txt.sec-pwd{
+.e_txt.pwdtxt{
 color:#fff !important;	
 }
 

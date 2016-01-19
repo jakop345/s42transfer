@@ -244,7 +244,7 @@ if(($cfg['security_enable'] ==true) && (!isset($_SESSION['login_auth'])))
        </p>	
        <p class="security-box">   
          <span class="upload-sec-block">	          	 
-		     <input type="password" class="e_txt sec-pwd" id="password" name="password" value="<?php  if(isset($_COOKIE['remember_me_pwd'])){echo $_COOKIE['remember_me_pwd']; }?>"  placeholder="<?php echo t('Password'); ?>" /> 
+		     <input type="password" class="e_txt sec-pwd pwdtxt" id="password" name="password" value="<?php  if(isset($_COOKIE['remember_me_pwd'])){echo $_COOKIE['remember_me_pwd']; }?>"  placeholder="<?php echo t('Password'); ?>" /> 
 		 </span>
        </p>	
        <p class="security-box remember-me-block">   
