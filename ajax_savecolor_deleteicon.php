@@ -48,12 +48,15 @@ elseif(isset($_POST['color_action']) && $_POST['color_action']=='Save'){  //Desi
         }
 		
 	  jirafeau_export_cfg_custom($cfg);
-	  echo "savedone";
+	  //echo "savedone";
+	  echo $cfg['web_root'];
+	  
 }
 elseif(isset($_POST['ad_typekit_chk']) && $_POST['ad_typekit_chk'] !=""){  //Enable disable Typekit fontreplacement  
 	 $cfg['typekit_fontreplacement'] =  $_POST['ad_typekit_chk'];
 	  jirafeau_export_cfg_custom($cfg);
-	  echo "typekit";
+	  //echo "typekit dd";
+	  echo s42_remove_ending_slash($cfg['web_root']);
 		
 }
 elseif(isset($_POST['typekit_action']) && $_POST['typekit_action'] !=""){ //TypeKit update 
@@ -317,6 +320,27 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 	   
 	   echo $cfg['web_root']; //Return via ajax
 	
+}
+elseif(isset($_POST['ad_security_chkVal']) && $_POST['ad_security_chkVal'] !=""){  //Security password disable,enable service 
+	 $cfg['security_enable'] =  $_POST['ad_security_chkVal'];
+	  jirafeau_export_cfg_custom($cfg);
+	  echo "security";
+		
+}
+elseif(isset($_POST['security_action']) && $_POST['security_action'] !=""){ //Security user password data update
+ $arr = array();
+ 
+	   if(!empty($_POST['sec_user'])){
+	    $cfg['sec_user'] = $_POST['sec_user'];
+		$arr['sec_user'] = $_POST['sec_user']; //return
+	   }
+		if(!empty($_POST['sec_pwd'])){	   
+         $cfg['sec_pwd'] = md5($_POST['sec_pwd']);
+		 $arr['sec_pwd'] =  $_POST['sec_pwd']; //return
+        }
+	 jirafeau_export_cfg_custom($cfg);
+
+		echo json_encode($arr);
 }
 
 ?>

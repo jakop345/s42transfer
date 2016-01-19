@@ -588,25 +588,38 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 				  </div><!--tabs1-shar-->
 				  
 				  <div id="tabs1-settings" class="tab_content">
-				      <!--settings content -->
-				  <div class="color_wrapper">
-				   <h1>Settings</h1>
+				  
+				  <!--security-wrapper-->
+				   <div class="color_wrapper security-wrapper">
+					 <h1>Security</h1>
+					 
 					 <div class="main-color">
-						   <div class="ad_setting_fiels">
-							   <form id="ad_settings_form" action="admin.php#tabs1-settings" method="post">
-								  
-								  <div id="ad_settings_detail" class="ad_shar_detail">
-									   <p>Upload Files Limit</p>							   
-									   <div class="ad_sttng"> <span class="ad_txt">Files limit</span>  <input type="number" name="file_limit" value="<?php if( isset($cfg['temp1']) &&  $cfg['temp1'] !=""){ echo $cfg['temp1'];}?>"/> </div>
-									   <div class="settings_btn"><input type="submit" name="setting_action" value="Save"/> <div id="setting_done" class="setting_done"></div> </div>
-								  </div>
-								</form> 
-							
-						   </div>
+						<form id="ad_security_form" action="admin.php#tabs1-settings" method="post" novalidate="novalidate">
+					       <div class="ad_shar_chk">						  
+						    <input type="checkbox" id="ad_security_chk" class="ad_shr_chk" value="1" name="security_enable" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==1){ echo 'checked="checked"';}?>/>
+                            <label for="ad_security_chk"> Enable password protection</label>
+					      </div>
+						  
+						  <div id="ad_security_detail" class="ad_security_detail">
+							   <p>Main Settings</p>
+							   <div class="ad_stng sec-fields">
+  							     <span class="ad_txt">User name</span> 
+								 <input type="text" id="sec_user" name="sec_user" maxlength="20" class="e_txt sec-user"  value="<?php if(isset($cfg['sec_user']) && $cfg['sec_user']!="") {echo $cfg['sec_user'];}else{}?>" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/>
+							   </div>
+							   <div class="ad_stng sec-fields">
+							      <span class="ad_txt">Password</span> 
+							      <input type="password" id="sec_pwd" name="sec_pwd" maxlength="20" class="e_txt sec-pwd" value="<?php if(isset($cfg['sec_pwd']) && $cfg['sec_pwd'] !="" ){ echo $cfg['sec_pwd'];}?>" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/>
+							   </div>
+							   <div class="setting_btn">
+							    <input type="submit" id="security_action" name="security_action" value="Save" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/> 
+								<div id="security_done" class="security_done"></div>
+							   </div>
+					      </div>
+						</form>
 					 </div>
 					 
-                    <div class="background-color">					  
-						<div class="ad_setting_fiels http_check">
+					   <div class="background-color">					  
+						<div class="ad_setting_fiels http_check ssl-top">
                            <p>Domain Configuration</p>						
 							<form id="http_form" action="admin.php" method="post" >
 							 <div class="ad_shar_chk_ssl">
@@ -637,10 +650,34 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 							  <div id="domain_setting_done" class="setting_done"></div>
 							</form>
 						   
-						</div> 
-						
-						
-					 </div> 
+						</div>
+					 </div><!--background-color-->
+					 
+					 
+					 
+				   </div><!--security-wrapper-->
+				   
+				  
+				  
+				  
+				      <!--settings content -->
+				  <div class="color_wrapper">
+				   <h1>General</h1>
+					 <div class="main-color">
+						   <div class="ad_setting_fiels">
+							   <form id="ad_settings_form" action="admin.php#tabs1-settings" method="post">
+								  
+								  <div id="ad_settings_detail" class="ad_shar_detail">
+									   <p>Upload Files Limit</p>							   
+									   <div class="ad_sttng"> <span class="ad_txt">Files limit</span>  <input type="number" name="file_limit" value="<?php if( isset($cfg['temp1']) &&  $cfg['temp1'] !=""){ echo $cfg['temp1'];}?>"/> </div>
+									   <div class="settings_btn"><input type="submit" name="setting_action" value="Save"/> <div id="setting_done" class="setting_done"></div> </div>
+								  </div>
+								</form> 
+							
+						   </div>
+					 </div>
+					 
+                   
 				</div> <!-- color_wrapper-->
 					   
 					   

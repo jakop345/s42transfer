@@ -130,6 +130,12 @@ $cfg['temp3']="";
 $cfg['temp4']="";
 $cfg['temp5']="";
 
+//Security password protection
+$cfg['security_enable']=false;
+$cfg['sec_user']="";
+$cfg['sec_pwd']="";
+$cfg['login_auth'] = false;
+
 //JIRAFEAU_CFG
 
 define ('JIRAFEAU_ROOT1', dirname (__FILE__) . '/');

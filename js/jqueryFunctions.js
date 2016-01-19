@@ -479,6 +479,90 @@
 		   
 		   
 		   
+	//######################################### Login check validate and submit ###############################
+   //#########################################  Login check validate and submit ###############################
+			jQuery("#login-form").validate({
+				 errorPlacement: function (error, element) {
+					error.insertAfter(element);
+					if (element.hasClass('e_txt')) {
+						//element.next().removeClass('loginValid').addClass('loginError');
+						element.removeClass('loginValid').addClass('loginError');
+					}
+				},
+				success: function (label) {
+					if (label.prev().hasClass('e_txt')) {
+						//label.text("ok Done!");
+					}
+				},
+				highlight: function (element, errorClass, validClass) {
+					if ($(element).hasClass('e_txt')) {
+						//$(element).next().removeClass('loginValid').addClass('loginError');
+						$(element).removeClass('loginValid').addClass('loginError');
+					} else {
+						$(element).addClass(errorClass).removeClass(validClass);
+					}
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					if ($(element).hasClass('e_txt')) {
+						//$(element).next().removeClass('loginError').addClass('loginValid');
+						$(element).removeClass('loginError').addClass('loginValid');
+					} else {
+						$(element).removeClass(errorClass).addClass(validClass);
+					}
+				},	
+				
+				
+		       rules: {  
+                  user: {
+					required: true,					
+					},
+					password: {
+					required: true,					
+					},
+                  },
+                
+                messages: {  
+				    
+                    user: {
+						required: "Please enter username" ,						
+					},	
+                    password: {
+						required: "Please enter password" ,						
+					},					
+					
+                  },
+				  
+				  
+				   submitHandler: function (form) { 
+						var str = $("#login-form" ).serialize();
+							$.ajax({
+							type: "POST",
+							url: "ajax_login.php",
+							data: str,
+							cache: false,
+							success: function(result){								
+								if(result ==1){
+									$("#upload-login").hide();
+									$("#upload").show();								
+									window.location.replace($("#web_root").val());								
+									
+								}else{
+									$("#upload-login-error").show();
+									$("#upload-login").hide();
+								}
+								
+							}
+							});
+						return false;
+					}
+	       });
+		   
+		   
+		   
+		   
+		   
+		   
+		   
 		   
 		
 		
@@ -503,6 +587,13 @@
 			  .on('dragbetterleave', function() {
 				$dropzones1.removeClass('_hover1');
 			  })
+			  
+			  
+			  
+			  
+			  
+			  
+			  
 			  
 			  
 				  

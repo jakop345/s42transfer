@@ -125,6 +125,15 @@ fieldset {
   float: left;
   width: 100%;
 }
+.security-box {
+  float: left;
+  margin: 0 !important;
+ 
+  width: 100%;
+}
+.set-top{
+	padding-top:40px;
+}
 span.upload {
   color: #ffffff;
   float: left;
@@ -134,6 +143,19 @@ span.upload {
   position: relative;
   top: 210px;
 }
+span.upload-sec {
+  color: #ffffff;
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  
+ 
+}
+
+
+
+
 span.drag {
   color: <?php echo $cfg['main_color_light'];?>;
   font-family: <?php echo $typekit_normal;?>;
@@ -279,6 +301,55 @@ table a:hover,
 table a:focus {
   text-decoration: none;
 }
+.upload-sec select,
+input[type="text"],
+input[type="password"] {
+  
+ 
+  border-left:none;
+  border-right:none;
+  padding: 6px 1% !important;
+  font-size: 16px !important;
+  width:98%;
+  background:none;
+  
+}
+.upload-sec-block input[type="text"]{
+	color:#fff;
+}
+
+.sec-pwd {
+  border-top:0px solid #01cefe;
+  border-bottom: 1px solid #01cefe;
+}
+.e_txt.sec-pwd.loginError {
+  border-top: medium none;
+}
+.sec-user{
+	border-bottom: 1px solid #01cefe;
+	border-top: 1px solid #01cefe;
+}
+
+.upload-sec-block ::-webkit-input-placeholder { /* Chrome */
+   color: #fff;
+}
+.upload-sec-block :-ms-input-placeholder { /* IE 10+ */
+   color: #fff;
+}
+.upload-sec-block ::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+  opacity: 1;
+}
+.upload-sec-block :-moz-placeholder { /* Firefox 4 - 18 */
+  color: #fff;
+  opacity: 1;
+}
+
+.upload-sec input::-moz-placeholder, .upload-sec textarea::-moz-placeholder{
+	color: #fff;
+	
+}
+
 
 select,
 input[type="text"],
@@ -287,6 +358,11 @@ input[type="password"] {
   padding: 5px 5px;
   font-size: 1em;
 }
+
+
+
+
+
 .inner {
   margin-top: 3em;
 }
@@ -559,6 +635,9 @@ body._drag .bgImg-first::before {
   height: 90px;
   width: 190px;
 }
+.footer-logout a{
+	font-weight:bold;
+}
 
 
 
@@ -577,16 +656,18 @@ body._drag .bgImg-first::before {
 }
 
 
-
+.donation-btn {
+  float: left;
+}
 #copyright {
   color: <?php echo $cfg['main_color'];?>;
   font-family: <?php echo $typekit_optional;?>;
   float: right;
   font-size: 11px;
-  margin: -5px auto 0;
+  margin: -10px auto 0;
   padding-left: 0;
   text-align: right;
-  width: 12em;
+  width: 18em;
 }
 #copyright > p {
   margin: 0;
@@ -838,12 +919,12 @@ send_txt input{
 #option_table tr td input[type="checkbox"], .ad_shr_chk input[type="checkbox"] {
   display: none;
 }
-#one_time_download, #pwdChk, .ad_shr_chk, #ad_typekit_chk, #ad_http_chk, #ad_domain_chk  {
+#one_time_download, #pwdChk, .ad_shr_chk, #ad_typekit_chk, #ad_http_chk, #ad_domain_chk, #remember-me  {
   opacity: 0;
   filter: alpha(opacity=0);
   display: none;
 }
-#one_time_download + label, #pwdChk + label, .ad_shr_chk + label, #ad_typekit_chk + label, #ad_http_chk + label, #ad_domain_chk + label{
+#one_time_download + label, #pwdChk + label, .ad_shr_chk + label, #ad_typekit_chk + label, #ad_http_chk + label, #ad_domain_chk + label, #remember-me + label{
     position: relative;
 }
 #one_time_download + label::before, #pwdChk + label::before, .ad_shr_chk + label::before, #ad_typekit_chk + label::before, #ad_http_chk + label::before, #ad_domain_chk + label::before {
@@ -859,11 +940,42 @@ send_txt input{
   visibility: visible;
   width: 14px;
 }
-#one_time_download:checked + label:before, #pwdChk:checked + label:before, .ad_shr_chk:checked + label:before, #ad_typekit_chk:checked + label:before, #ad_http_chk:checked + label:before, #ad_domain_chk:checked + label:before {
+
+#one_time_download:checked + label:before, #pwdChk:checked + label:before, .ad_shr_chk:checked + label:before, #ad_typekit_chk:checked + label:before, #ad_http_chk:checked + label:before, #ad_domain_chk:checked + label:before  {
     content: '✔';
 	float:left;
 	width: 14px;
 	height: 14px;
+}
+
+#remember-me + label::before{
+
+  border: 1px solid #fff;
+  content: "";
+  display: inline-block;
+  float: left;
+  font-size: 14px;
+  height: 14px;
+  line-height: 14.5px;
+  margin: 4px 8px 0 0;
+  text-align: center;
+  visibility: visible;
+  width: 14px;
+
+}
+#remember-me:checked + label:before{
+	content: '✔';
+	float:left;
+	width: 14px;
+	height: 14px;
+	color:#fff;
+	
+}
+.remember-me-block{
+color: #fff;
+    padding-left: 2%;
+    padding-top: 1%;
+    width: 95%;
 }
 
 #option_table tr td input#input_key {
@@ -1345,6 +1457,51 @@ form .submit_send > input:hover{
   color: <?php echo $cfg['main_color_light'];?>;
   
 }
+
+form .submit_login > input {
+  float: left;
+  font-size: 17px;
+  margin: 0 2%;
+  width: 96%;
+  border: 1px solid #fff;
+  background:  #ffffff none repeat scroll 0 0;
+  padding:2%;
+}
+
+form .submit_login > input:hover{
+  
+  background:  #ffffff none repeat scroll 0 0;
+  border: 1px solid <?php echo $cfg['main_color_light'];?>;
+  cursor: pointer;
+  color: <?php echo $cfg['main_color_light'];?>;
+   padding:2%;
+   float: left;
+  font-size: 17px;
+  margin: 0 2%;
+  width: 96%;
+  
+}
+.sec-fields label{
+	display:none !important;
+}
+
+.submit_login {
+  float: left;
+  padding-top: 31px;
+  width: 100%;
+}
+.upload-sec-block .error {
+  display: none !important;
+}
+.e_txt.loginError {
+  border: 1px solid #d0021b;
+  border-left: 0px solid #d0021b;
+  border-right: 0px solid #d0021b;
+ 
+}
+
+
+
 form #admin_password {
   border: none;
 }
@@ -2721,6 +2878,29 @@ p.ad_tpye_content textarea {
   padding-bottom: 10px;
   font-family: <?php echo $typekit_bold;?>;
 }
+
+
+.ad_security_detail {
+  float: left;
+  width: 100%;
+}
+#ad_security_detail > p, .ad_stng {
+  border-bottom: 1px solid <?php echo $cfg['main_color_light'];?>;
+  float: left;
+  margin-bottom: 0;
+  padding-left: 2%;
+  width: 98%;
+}
+#ad_security_detail > p {
+  font-weight: bold;
+  padding-bottom: 10px;
+  font-family: <?php echo $typekit_bold;?>;
+}
+
+
+
+
+
 .ad_txt {
   float: left;
   padding: 10px 0;
@@ -2736,6 +2916,9 @@ p.ad_tpye_content textarea {
   width:60%;
 }
 #ad_shar_detail .setting_btn {
+  text-align: right;
+}
+.ad_security_detail .setting_btn {
   text-align: right;
 }
 #ad_settings_detail > p {
@@ -2758,6 +2941,13 @@ p.ad_tpye_content textarea {
 .ad_setting_fiels.http_check {
     float: left;
     width: 100%;
+	
+}
+.ssl-top{
+	padding-top:3.6%;
+}
+.ad_shar_chk_ssl {
+  padding-top: 6px;
 }
 .ad_sttng, .settings_btn {
   float: left;

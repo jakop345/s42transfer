@@ -3,6 +3,10 @@ fieldset, #upload_finished, body._drag .bgImg-first::before, #upload_done, #canc
   min-height: 24em;
   width: 16.9em;
 }
+fieldset.logins-wrapper{
+ min-height: 30em;
+}
+
 .f_name{
   width: 68%;
 }
@@ -270,6 +274,10 @@ span.m_color {
 fieldset, #upload_finished, body._drag .bgImg-first::before, #upload_done, #cancel_container, #uploading, #sendLinks_wrapper, #mail_sent, .terms-containers {
   min-height: 29em;
   width: 20em;
+}
+
+fieldset.logins-wrapper{
+ min-height: 30em;
 }
 
 .footer-logo {

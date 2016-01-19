@@ -44,9 +44,11 @@
 					cache: false,
 					success: function(result){
 						$("#ad_loader").hide();
-						if(result =="savedone"){
+						if(result){
 							
 					       $("#color_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
+						   //window.location.replace(result+'admin.php#tabs1-design');
+						   window.location.reload();
 						}
 					}
 				 });	
@@ -82,7 +84,14 @@
 						data: str,
 						cache: false,
 						success: function(result){
-							$("#ad_loader").hide();							
+							$("#ad_loader").hide();
+							//alert($(".site_url").val());
+							//location.reload();
+							//window.location.href($(".site_url").val());
+							//window.location.replace($(".site_url").val()+'admin.php#tabs1-typekit');
+							 window.location = result+'/admin.php#tabs1-typekit';
+							  //window.location.reload();
+							
 						}
 					});	
 					
@@ -112,6 +121,7 @@
 						$("#ad_loader").hide();
 						if(result =="typekit_done"){							
 					       $("#typekit_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
+						     window.location.reload();
 						}
 					}
 				 });	
@@ -123,7 +133,7 @@
 	 //##################################### Sharing update save in config file #################################
 	 //##################################### Sharing fonts update save in config file #################################
 	 
-	  /******************* Enable disable Typekit code**************/	  
+	  /******************* Enable disable Sharing code**************/	  
 	    $('#ad_shr_chk').on('click', function () {
 			$("#ad_loader").show();
 		    if($(this).prop('checked') == true){
@@ -184,7 +194,7 @@
 	//##################################### Files limit save in config file #################################
 	 //##################################### Files limi update save in config file #################################
 	 
-	  /******************* Enable disable Typekit code**************/	  
+	  /******************* file limit code**************/	  
 	     	jQuery("#ad_settings_form").validate({
 		       rules: {           
 				file_limit: {
@@ -330,6 +340,138 @@
 				
 			});	
 	   });
+	   
+	   
+	   
+	   
+	 //##################################### Security password update save in config file #################################
+	 //##################################### Security password update save in config file #################################
+	 
+	  /******************* Enable disable Security code**************/	  
+	    $('#ad_security_chk').on('click', function () {
+			$("#ad_loader").show();
+		    if($(this).prop('checked') == true){
+			  $('#sec_user').removeAttr("disabled"); 
+			  $('#sec_pwd').removeAttr("disabled"); 
+			  $('#security_action').removeAttr("disabled");			  
+			  $("#ad_security_detail").removeClass("security_disabled");
+			 var ad_security_chkVal = 1;
+			 }else{
+				
+				 $('#sec_user').attr("disabled", "disabled");
+				 $('#sec_pwd').attr("disabled", "disabled");				 
+				 $('#security_action').attr("disabled", "disabled");				 
+				 
+				  $("#ad_security_detail").addClass("security_disabled");
+			     var ad_security_chkVal = 0;	  
+			   	}
+				//Update into security enable in Config file
+				var str = "ad_security_chkVal="+ad_security_chkVal;				
+				 	$.ajax({
+						type: "POST",
+						url: "ajax_savecolor_deleteicon.php",
+						data: str,
+						cache: false,
+						success: function(result){
+							$("#ad_loader").hide();
+
+						}
+					});
+			  });
+	  
+	     //Submit form
+			jQuery("#ad_security_form").validate({
+		          errorPlacement: function (error, element) {
+					error.insertAfter(element);
+					if (element.hasClass('e_txt')) {
+						//element.next().removeClass('loginValid').addClass('loginError');
+						element.removeClass('loginValid').addClass('loginError');
+					}
+				},
+				success: function (label) {
+					if (label.prev().hasClass('e_txt')) {
+						//label.text("ok Done!");
+					}
+				},
+				highlight: function (element, errorClass, validClass) {
+					if ($(element).hasClass('e_txt')) {
+						//$(element).next().removeClass('loginValid').addClass('loginError');
+						$(element).removeClass('loginValid').addClass('loginError');
+					} else {
+						$(element).addClass(errorClass).removeClass(validClass);
+					}
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					if ($(element).hasClass('e_txt')) {
+						//$(element).next().removeClass('loginError').addClass('loginValid');
+						$(element).removeClass('loginError').addClass('loginValid');
+					} else {
+						$(element).removeClass(errorClass).addClass(validClass);
+					}
+				},
+				 
+				   rules: {  
+                  sec_user: {
+					required: true,					
+					},
+					sec_pwd: {
+					required: true,					
+					},
+                  },
+                
+                messages: {  
+				    
+                    sec_user: {
+						required: "Please enter username" ,						
+					},	
+                    sec_pwd: {
+						required: "Please enter password" ,						
+					},					
+					
+                  },
+				 
+			   submitHandler: function (form) { 
+			    $("#ad_loader").show();
+				var str = $("#ad_security_form" ).serialize();
+				  $.ajax({
+					type: "POST",
+					url: "ajax_savecolor_deleteicon.php",
+					data: str,
+					dataType: "json",
+					cache: false,
+					success: function(result){
+						$("#ad_loader").hide();						
+						if(result){	
+							//alert(result['sec_user'] + '-'+ result['sec_pwd'] );
+							$("#sec_user").val(result['sec_user']);
+							$("#sec_pwd").val(result['sec_pwd']);
+							
+					       $("#security_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
+						    
+							//setTimeout( function(){ 
+						    //window.location.replace(result);
+                             //},1000 );
+						}
+					}
+				 });	
+				return false;
+			  }
+	       });
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
   
 			
 
@@ -354,6 +496,7 @@
 							 $("#preview_error").html(data);  
 							}else{
 								$("#preview").html(data);
+								  window.location.reload();
 							}	
 												 
 					   }
@@ -382,6 +525,7 @@
 							 $("#preview_retina_error").html(data);  
 							}else{
 								$("#preview_retina").html(data);
+								window.location.reload();
 							}	
 												 
 					   }   
@@ -408,6 +552,7 @@
 							 $("#preview_favicon_error").html(data);  
 							}else{
 								$("#preview_favicon").html(data);
+								window.location.reload();
 							}	
 												 
 					   }
@@ -433,6 +578,7 @@
 							 $("#preview_touchicon_error").html(data);  
 							}else{
 								$("#preview_touchicon").html(data);
+								window.location.reload();
 							}	
 												 
 					   }
@@ -456,6 +602,8 @@
 							else if(result=="delete_retina"){ $("#preview_retina").html("");}
 							else if(result=="delete_favicon"){ $("#preview_favicon").html("");}
 							else if(result=="delete_touchicon"){ $("#preview_touchicon").html("");}
+							
+							window.location.reload();
 						}
 					});	
 						return false;

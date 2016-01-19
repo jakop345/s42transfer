@@ -1763,4 +1763,16 @@ function get_tiny_url($url)  {
 }
 
 
+function s42_remove_ending_slash ($path)
+{
+    //return $path . ((substr ($path, -1) == '/') ? '' : '');
+	if(substr($path, -1) == '/') {
+    $string = substr($path, 0, -1);
+	 return $string;
+    }else{
+	 return	$path;
+	}
+}
+
+
 

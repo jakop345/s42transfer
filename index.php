@@ -43,9 +43,17 @@ if (!jirafeau_challenge_upload_ip ($cfg, get_ip_address($cfg)))
     exit;
 }
 
+/* Check session. */
+session_set_cookie_params(0);
+session_start();
+
+
+
+
 /* Ask password if upload password is set. */
 if (jirafeau_has_upload_password ($cfg))
 {
+	session_set_cookie_params(0);
     session_start();
 
     /* Unlog if asked. */
@@ -102,6 +110,7 @@ if (jirafeau_has_upload_password ($cfg))
 }
 
 ?>
+
 <div id="upload_finished" style="display:none;">
     <div id="upload_finished_download_page">        
 		<p class="upload-complete">
@@ -200,9 +209,114 @@ if (jirafeau_has_upload_password ($cfg))
 
 <div id="error_pop" class="error"></div>
 
+<?php
+if(isset($_COOKIE['remember_me_pwd']) && $_COOKIE['remember_me_pwd'] !=""){
+	//print_r($_COOKIE);
+	$_SESSION['login_auth'] = $_COOKIE['remember_me']; 
+
+}
+?>
+
+
+
+<!-- LOGIN SCREEEN-->
+<?php 
+
+if(($cfg['security_enable'] ==true) && (!isset($_SESSION['login_auth']))) 
+{
+	?>
+
+	
+
+<div id="upload-login">
+
+
+     <fieldset id="" class="logins-wrapper access_denied">
+	   <div class="login error_conttent">
+	      <p class="access_error">Restricted Area</p>
+	      <p class="wrong-password">Enter username and password</p>
+	  
+	  <form name="login-form" id="login-form" class="login-form" method="post" action="">  
+	   <p class="security-box set-top">   
+         <span class="upload-sec-block">	          	 
+		     <input type="text" id="user" name="user" value="<?php  if(isset($_COOKIE['remember_me'])){echo $_COOKIE['remember_me']; }?>" class="e_txt sec-user" placeholder="<?php echo t('Username'); ?>" /> 
+		 </span>
+       </p>	
+       <p class="security-box">   
+         <span class="upload-sec-block">	          	 
+		     <input type="password" class="e_txt sec-pwd" id="password" name="password" value="<?php  if(isset($_COOKIE['remember_me_pwd'])){echo $_COOKIE['remember_me_pwd']; }?>"  placeholder="<?php echo t('Password'); ?>" /> 
+		 </span>
+       </p>	
+       <p class="security-box remember-me-block">   
+         <span class="upload-sec-block">	          	 
+		     <input type="checkbox" name="remember-me" id="remember-me" class="remember-me" value="1"/>		   
+			 <label for="remember-me">Remember me</label>
+			 
+		 </span>
+       </p>	   
+
+	  
+		<div class="submit_login">		
+				<input type="submit" name="key" value="Login"/> 
+		</div>
+		</form>
+		 
+       </div><!--login error_conttent-->		 
+
+	</fieldset>   
+</div>
+<?php }?>
+<!-- END LOGIN SCREEEN-->
+
+
+
+<!-- LOGIN SCREEEN-->
+<div id="upload-login-error" style="display:none;">
+     <fieldset id="" class="access_denied">
+	   <div class="login error_conttent">
+	      <p class="access_error">Access Denied</p>
+	      <p class="wrong-password">Wrong Passwordd</p>
+       </div><!--login error_conttent-->		 
+
+	</fieldset>   
+</div>
+<!-- END LOGIN SCREEEN ERROR-->
+
+
+
+
+<?php
+
+if(($cfg['security_enable'] ==false) && (!isset($_SESSION['login_auth']))) 
+{
+	$display = 'block';
+}else{
+	$display = 'none';
+}
+
+if(isset($_SESSION['login_auth']) && $_SESSION['login_auth']==true) 
+{
+	$display = 'block';
+}
+?>
+
+
+<?php 
+
+ 
+	  
+//print_r($_SESSION);
+if(isset($_COOKIE)){
+	
+//print_r($_COOKIE);
+//print_r($_SESSION);
+}
+
+?>	
+	
 
 <!--Upload screen-->
-<div id="upload">
+<div id="upload" style="display:<?php echo $display;?>">
 <fieldset id="bgImg" class="bgImg-first">
     <legend>
     <?php echo t('Select a file'); ?> 
