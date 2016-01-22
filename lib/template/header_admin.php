@@ -48,6 +48,13 @@ else
   <meta http-equiv="Content-Type" content="<?php echo $content_type; ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
+  <!-- no cache headers -->
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="no-cache"/>
+	<meta http-equiv="Expires" content="-1"/>
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<!-- end no cache headers -->
+  
   <link rel="icon" href="<?php echo $cfg['favicon']; ?>" type="image/x-icon" />
   <link rel="apple-touch-icon" href="<?php echo $cfg['touchicon']; ?>" />
   

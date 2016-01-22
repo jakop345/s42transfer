@@ -543,7 +543,8 @@
 							success: function(result){								
 								if(result ==1){
 									$("#upload-login").hide();
-									$("#upload").show();								
+									$(".footer").hide();
+									//$("#upload").show();								
 									window.location.replace($("#web_root").val());								
 									
 								}else{

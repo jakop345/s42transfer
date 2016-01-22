@@ -102,6 +102,7 @@
 			  });
 	  
 
+			
 			jQuery("#typekit_form").validate({
 		       rules: {           
                
@@ -110,18 +111,28 @@
                },
 			   submitHandler: function (form) { 
 			    $("#ad_loader").show();
+				var str = $('#typekiteCode').val().replace('<script','sf_@_#');
+				str = str.replace('</script>','ss_@_#');
+				str = str.replace('<script>','st_@_#');
+				str = str.replace('</script>','ss_@_#');
+				$('#typekiteCode').val(str);
 				var str = $("#typekit_form" ).serialize();
 				
 				  $.ajax({
 					type: "POST",
 					url: "ajax_savecolor_deleteicon.php",
 					data: str,
+					context: document.body,
 					cache: false,
 					success: function(result){
+						
 						$("#ad_loader").hide();
-						if(result =="typekit_done"){							
+						if(result){							
 					       $("#typekit_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
-						     window.location.reload();
+						     //window.location.reload();
+							// window.location.reload(true);							
+							window.location.href = $(".site_url").val()+'admin.php?action=tabs1-typekit';
+							//$("#kit-type").click(); 
 						}
 					}
 				 });	
@@ -335,6 +346,9 @@
 					  $("#domain_setting_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
 					  //location.reload();
 					   window.location.replace(result+'admin.php#tabs1-settings');
+					   
+					   
+					   
 					}
 				}
 				
@@ -440,17 +454,16 @@
 					dataType: "json",
 					cache: false,
 					success: function(result){
+						
 						$("#ad_loader").hide();						
 						if(result){	
 							//alert(result['sec_user'] + '-'+ result['sec_pwd'] );
 							$("#sec_user").val(result['sec_user']);
-							$("#sec_pwd").val(result['sec_pwd']);
+							//$("#sec_pwd").val(result['sec_pwd']);
 							
 					       $("#security_done").html('<span class="sucess_message">Configuration has been updated successfully!</span>').show().fadeOut( 5000 );
 						    
-							//setTimeout( function(){ 
-						    //window.location.replace(result);
-                             //},1000 );
+							 window.location.reload(true);		
 						}
 					}
 				 });	

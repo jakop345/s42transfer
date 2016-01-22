@@ -291,6 +291,7 @@ if (isset ($_POST['step']) && isset ($_POST['next']))
 		}
 			$cfg['logo'] = $cfg['web_root'].$cfg['logo'];
 			$cfg['logo_resolation'] = $cfg['web_root'].$cfg['logo_resolation'];
+			//$cfg['favicon'] = $cfg['web_root'].$cfg['favicon'];
 			$cfg['touchicon'] = $cfg['web_root'].$cfg['touchicon'];
 			
 			//send root url in httacess file

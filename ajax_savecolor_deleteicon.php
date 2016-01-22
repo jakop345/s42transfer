@@ -63,7 +63,19 @@ elseif(isset($_POST['typekit_action']) && $_POST['typekit_action'] !=""){ //Type
 	
 		
 	   if(!empty($_POST['typekit_code'])){
-	    $cfg['typekit_code'] = $_POST['typekit_code'];
+		   
+		  $typekit_code =  $_POST['typekit_code'];
+		  $typekit_code = str_replace("sf_@_#","<script",$typekit_code);
+		  $typekit_code = str_replace("ss_@_#","</script>",$typekit_code);
+		  $typekit_code = str_replace("st_@_#","<script>",$typekit_code);
+		  $typekit_code = str_replace("ss_@_#","</script>",$typekit_code);
+		   /*
+		   var str = $('#typekiteCode').val().replace('<script','sf_@_#');
+				str = str.replace('</script>','ss_@_#');
+				str = str.replace('<script>','st_@_#');
+				str = str.replace('</script>','ss_@_#');
+				*/
+	    $cfg['typekit_code'] = $typekit_code;
 	   }
 	   if(!empty($_POST['typekit_normal'])){	   
          $cfg['typekit_normal'] =  $_POST['typekit_normal'];
@@ -76,7 +88,8 @@ elseif(isset($_POST['typekit_action']) && $_POST['typekit_action'] !=""){ //Type
          $cfg['typekit_optional'] =  $_POST['typekit_optional'];
         }
 	 jirafeau_export_cfg_custom($cfg);
-	  echo "typekit_done";
+	 echo "typekit_done";
+	 
 }
 elseif(isset($_POST['ad_shr_chkVal']) && $_POST['ad_shr_chkVal'] !=""){  //Enable disable Sharing Email service 
 	 $cfg['sharing_enable'] =  $_POST['ad_shr_chkVal'];
@@ -307,18 +320,40 @@ elseif(isset($_POST['ad_http_chkVal']) && $_POST['ad_http_chkVal'] !=""){ // Ena
 		
 		
 		
-	   $cfg['web_root'] = $url;	  	
+	   $cfg['web_root'] = $url;	 
+	   
+	   /****Update image url***/	   
+	    $web_rootUrl = s42_remove_ending_slash($cfg['web_root']);
+		
+	   //logo
+	    $iconPathlogo = (parse_url($cfg['logo'], PHP_URL_PATH));
+	    $cfg['logo'] = $web_rootUrl.$iconPathlogo;
+		
+	    //logo_resolation  		
+		$iconPathlogo_resolation = (parse_url($cfg['logo_resolation'], PHP_URL_PATH));		
+	    $cfg['logo_resolation'] = $web_rootUrl.$iconPathlogo_resolation;
+			
+			
+		//favicon  		
+		//$iconPathfavicon = (parse_url($cfg['favicon'], PHP_URL_PATH));		
+	    //$cfg['favicon'] = $web_rootUrl.$iconPathfavicon;	
+		
+       //touchicon  		
+		$iconPathtouchicon = (parse_url($cfg['touchicon'], PHP_URL_PATH));		
+	    $cfg['touchicon'] = $web_rootUrl.$iconPathtouchicon;
+			
+	   /****Update image url***/
+	   
+	   
 	   jirafeau_export_cfg_custom($cfg);
 	   
 	   
 	    $f = fopen(".htaccess", "r+");		
 		fwrite($f, $content);
 		fclose($f);
-	
+	   
+	  echo $cfg['web_root']; //Return via ajax
 	  
-	   
-	   
-	   echo $cfg['web_root']; //Return via ajax
 	
 }
 elseif(isset($_POST['ad_security_chkVal']) && $_POST['ad_security_chkVal'] !=""){  //Security password disable,enable service 

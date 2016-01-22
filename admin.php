@@ -32,6 +32,24 @@ if (file_exists (JIRAFEAU_ROOT . 'install.php')
     exit;
 }
 
+
+if(isset($_GET['action']) && $_GET['action']=="tabs1-typekit" ){
+	ob_start();
+	clearstatcache();
+	header("Cache-Control: no-cache, must-revalidate");
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+	header("Content-Type: application/xml; charset=utf-8");
+	
+	
+	header ("Expires: ".gmdate("D, d M Y H:i:s", time())." GMT");  
+	header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");  
+	header ("Cache-Control: no-cache, must-revalidate");  
+	header ("Pragma: no-cache");
+		
+	header('Location: admin.php#tabs1-typekit'); 
+	ob_end_flush();
+}
+
 /* Disable admin interface if we have a empty admin password. */
 if (empty($cfg['admin_password']) && empty($cfg['admin_http_auth_user']))
 {
@@ -49,6 +67,9 @@ if (empty($cfg['admin_password']) && empty($cfg['admin_http_auth_user']))
     exit;
 }
 
+
+
+
 /* Check session. */
 session_start();
 
@@ -59,8 +80,11 @@ if (isset ($_POST['action']) && (strcmp ($_POST['action'], 'logout') == 0))
 /* Check classic admin password authentification. */
 if (isset ($_POST['admin_password']) && empty($cfg['admin_http_auth_user']))
 {
-    if (strcmp ($cfg['admin_password'], $_POST['admin_password']) == 0)
+    if (strcmp ($cfg['admin_password'], $_POST['admin_password']) == 0){
         $_SESSION['admin_auth'] = true;
+	    header('Location: admin.php'); 
+	}
+	
     else
     {
         $_SESSION['admin_auth'] = false;
@@ -156,7 +180,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 			  <ul class='etabs'>
 				<li class='tab'><a href="#tabs1-gen">General</a></li>
 				<li class='tab'><a href="#tabs1-design"> Design</a></li>
-				<li class='tab'><a href="#tabs1-typekit">Typekit</a></li>
+				<li class='tab'><a id="kit-type" href="#tabs1-typekit">Typekit</a></li>
 				<li class='tab'><a href="#tabs1-shar">Sharing</a></li>
 				<li class='tab'><a href="#tabs1-settings">Settings</a></li>
 				
@@ -527,7 +551,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 				  <!--typekit content -->
 					<h2>Typekit Fonts</h2>
 					<div class="ad_Typekit">
-					<form id="typekit_form" action="admin.php#tabs1-typekit"  method="post">
+					<form id="typekit_form" action="admin.php#tabs1-typekit"  method="post" autocomplete="off">
 						 <div class="ad_shar_chk">
 						   <input id="ad_typekit_chk" class="ad_typekit_chk" name="typekit_fontreplacement" value="1" type="checkbox" <?php if( $cfg['typekit_fontreplacement']==1){ echo 'checked="checked"';}?>/>
                            <label for="ad_typekit_chk"> Enable Font Replacement</label>
@@ -608,7 +632,7 @@ if(!isset($_POST['action_list_bottom']) && !isset($_POST['action_list'])){
 							   </div>
 							   <div class="ad_stng sec-fields">
 							      <span class="ad_txt">Password</span> 
-							      <input type="password" id="sec_pwd" name="sec_pwd" maxlength="20" class="e_txt sec-pwd" value="<?php if(isset($cfg['sec_pwd']) && $cfg['sec_pwd'] !="" ){ echo $cfg['sec_pwd'];}?>" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/>
+							      <input type="password" id="sec_pwd" name="sec_pwd" maxlength="20" class="e_txt sec-pwd" value="" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/>
 							   </div>
 							   <div class="setting_btn">
 							    <input type="submit" id="security_action" name="security_action" value="Save" <?php if(isset($cfg['security_enable'])&& $cfg['security_enable']==false){ echo 'disabled="disabled"';}?>/> 

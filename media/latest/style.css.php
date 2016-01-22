@@ -42,6 +42,7 @@
 	$typekit_normal = $cfg['typekit_normal'];
 	$typekit_bold = $cfg['typekit_bold'];
 	$typekit_optional = $cfg['typekit_optional'];
+	$cfg['web_root']="";
 }
 
 
@@ -193,14 +194,14 @@ span.drag {
     word-break: break-all;
 }
 #add_file_wrapper::before {
-  background: rgba(0, 0, 0, 0) url("add_small.svg") no-repeat scroll 95.5% center / auto 100%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small.svg") no-repeat scroll 95.5% center / auto 100%;
   color: #c3c3c3;
   content: "Add more files";
   position: absolute;
   width: 100%;
 }
 #add_file_wrapper:hover::before {
-  background: rgba(0, 0, 0, 0) url("add_small_hover.svg") no-repeat scroll 95.5% center / auto 100%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small_hover.svg") no-repeat scroll 95.5% center / auto 100%;
 }
 .dwn-file-list .fileList::before  {
   background: none;
@@ -215,7 +216,7 @@ span.drag {
   width: 100%;
 }
 .dwn-file-list .fileList::before {
-  background: rgba(0, 0, 0, 0) url("add_small.svg") no-repeat scroll 95.5% center / auto 100%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small.svg") no-repeat scroll 95.5% center / auto 100%;
   content: '';
 }
 #add_file_wrapper, .dwn-file-list .fileList {
@@ -243,14 +244,14 @@ span.drag {
   width: 5%;
 }
 .download-icon a.dn-icon {
-  background: rgba(0, 0, 0, 0) url("download.svg") no-repeat scroll center center / auto 100%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/download.svg") no-repeat scroll center center / auto 100%;
   float: left;
   height: 25px;
   position: relative;
   width: 100%;
 }
 .download-icon a.dn-icon:hover{
-  background: rgba(0, 0, 0, 0) url("download_activ.svg") no-repeat scroll center center / auto 100%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/download_activ.svg") no-repeat scroll center center / auto 100%;
 }
 .pwd-protection {
   color: <?php echo $cfg['main_color'];?>;
@@ -374,7 +375,7 @@ input[type="password"] {
 }
 
 #upload fieldset {
-  background: #134953 url("upload-plus.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/upload-plus.svg") no-repeat scroll center 35%;
   -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
       -ms-transition: all 0.5s ease;
@@ -407,7 +408,7 @@ input[type="password"] {
 }
 
 body._drag .bgImg-first::before {
-  background: #ffffff url("upload-plus-hover.svg") no-repeat scroll center 34.3% !important;
+  background: #ffffff url("<?php echo $cfg['web_root'];?>media/latest/upload-plus-hover.svg") no-repeat scroll center 34.3% !important;
   border: 10px solid #134953;
   box-sizing: border-box;
   color: <?php echo $cfg['main_color'];?>;
@@ -706,7 +707,7 @@ label.emailError{
 }
 .ad_gen_right select {
   -webkit-appearance: none;
-  background: #f3f3f3 url("select-arrow.svg") no-repeat scroll 90% center;
+  background: #f3f3f3 url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 90% center;
   margin-left: 0.6em!important;
   margin-top: 0.15em!important;
   padding: 0.6em!important;
@@ -721,7 +722,7 @@ label.emailError{
 	padding: 10px 2.12%!important;
 }
 .ad_gen_bottom_right select{
-  background: rgba(0, 0, 0, 0) url("select-arrow.svg") no-repeat scroll 94% center ;	
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 94% center ;	
 }
 .ad_type_txt > label{
   padding: 10px 0!important;
@@ -730,19 +731,19 @@ span.ad_txt {
 margin-top: 13px!important;
 }
 #add_file_wrapper::before {
-  background: rgba(0, 0, 0, 0) url("add_small.svg") no-repeat scroll right center ;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small.svg") no-repeat scroll right center ;
   background-repeat: no-repeat;
   height: 25px;
   width: 96%;
 }
 #add_file_wrapper:hover::before {
-  background: rgba(0, 0, 0, 0) url("add_small_hover.svg") no-repeat scroll right center ;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small_hover.svg") no-repeat scroll right center ;
   background-repeat: no-repeat;
   height: 25px;
   width: 96%;
 }
 .expand_icons_total.down_icon, .expand_icons_total.up_icon, .expand_icon.down_icon, .expand_icon.up_icon{
-  background-image:  url("expand-arrow.svg");
+  background-image:  url("<?php echo $cfg['web_root'];?>media/latest/expand-arrow.svg");
   background-size: 25px;
   height: 25px;
   background-position: center;
@@ -797,14 +798,14 @@ div.ad_gen_bottom_right{
   height: 33px;
 }
 .ad_file_act_del input {
-  background: #134953 url("delete.svg");
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/delete.svg");
   height: 40px;
   width: 40px;
   background-repeat: no-repeat;
   background-position: center;
 }
 .ad_file_act_sh input {
-  background: #04cdf7 url("delete_link_activ.svg") ;
+  background: #04cdf7 url("<?php echo $cfg['web_root'];?>media/latest/delete_link_activ.svg") ;
   height: 40px;
   width: 40px;
   background-repeat: no-repeat;
@@ -829,11 +830,11 @@ send_txt input{
 	width: 100%;
 }
 .done_image {
-  background: #134953 url("done.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/done.svg") no-repeat scroll center 35%;
   background-size: 44%;
 }
 .done_del_image {
-  background: #134953 url("done_del.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/done_del.svg") no-repeat scroll center 35%;
   background-size: 44%;
 }
 }
@@ -996,7 +997,7 @@ color: #fff;
   -moz-appearance: none;
   background-attachment: scroll;
   background-clip: border-box;
-  background-image: url("select-arrow.svg");
+  background-image: url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg");
   background-origin: padding-box;
   background-position: 95% center;
   background-repeat: no-repeat;
@@ -1094,7 +1095,7 @@ p.access_error, p.wrong-password, .done_txt, #dvCountDown_done, .dvCountDown_don
   background: #134953; 
 }
 .access_denied {
-  background: #134953 url("denied.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/denied.svg") no-repeat scroll center 35%;
 }
 a.if_not_redirect {
   color: <?php echo $cfg['main_color_light'];?>;
@@ -1134,13 +1135,13 @@ span.done_txt {
   top: 6px;
 }
 .cancel_container, #mail_sent {
-  background: #134953 url("error.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/error.svg") no-repeat scroll center 35%;
   height: 30em;
   margin: 0 auto;
   width: 25em;
 }
 #mail_sent {
-  background: #134953 url("email.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/email.svg") no-repeat scroll center 35%;
 }
 #upload_done, .link-expired, #del_done{
   background: #134953;
@@ -1152,7 +1153,7 @@ span.done_txt {
   width: 25em;
 }
 .done_image {
-  background: #134953 url("done.svg") no-repeat scroll center 35% / 44% auto;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/done.svg") no-repeat scroll center 35% / 44% auto;
   float: left;
   height: 186px;
   position: relative;
@@ -1160,7 +1161,7 @@ span.done_txt {
   width: 100%;
 }
 .done_del_image {
-  background: #134953 url("done_del.svg") no-repeat scroll center 100% / 15% auto;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/done_del.svg") no-repeat scroll center 100% / 15% auto;
   float: left;
   height: 186px;
   position: relative;
@@ -1170,7 +1171,7 @@ span.done_txt {
 #upload_image_email {
   padding-left: 20px;
   margin-left: 10px;
-  background: url(email.png) no-repeat;
+  background: url(<?php echo $cfg['web_root'];?>media/latest/email.png) no-repeat;
 }
 #content {
   padding-top: 1em;
@@ -1215,10 +1216,10 @@ span.done_txt {
   width: 100%;
 }
 .link-expired {
-  background: #134953 url("expired.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/expired.svg") no-repeat scroll center 35%;
 }
 .file_not_found {
-  background: #134953 url("expired.svg") no-repeat scroll center 35%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/expired.svg") no-repeat scroll center 35%;
 }
 .dwn-file-list .f_size {
   padding-right: 2%;
@@ -1276,14 +1277,14 @@ form input#admin_password {
   width: 93%;
 }
 .download_links span a, .send_txt input, .send_txt textarea, #admin_password{
-  background:rgba(0, 0, 0, 0) url("share.svg") no-repeat scroll 98.8% center;
+  background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/share.svg") no-repeat scroll 98.8% center;
   color: <?php echo $cfg['main_color'];?>;
   float: left;
   padding: 1.5% 2%;
   width: 96%;
 }
 .download_links span a:hover{
-  background: rgba(0, 0, 0, 0) url("share_active.svg") no-repeat scroll 98.8% center;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/share_active.svg") no-repeat scroll 98.8% center;
 }
 .send_txt input::-moz-placeholder, .send_area textarea::-moz-placeholder{
 	color: <?php echo $cfg['main_color'];?>;
@@ -1332,7 +1333,7 @@ label.emailError {
   margin-left: 2%;
 }
 label.emailValid {
-  background: rgba(0, 0, 0, 0) url("emailvalid.svg") no-repeat scroll right center / auto 65%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/emailvalid.svg") no-repeat scroll right center / auto 65%;
   float: right;
   margin-right: 2%;
   padding: 17px;
@@ -1870,12 +1871,12 @@ input.navright {
   text-align: center!important;
 }
 .navright.url-nxt {
-  text-align: justify !important;
+  text-align: center;
 }
 #install table tr td.field select {
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: rgba(0, 0, 0, 0) url("language-arrow.svg") no-repeat scroll 97% center / auto 30%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/language-arrow.svg") no-repeat scroll 97% center / auto 30%;
   border: 1px solid #000000 !important;
   cursor: pointer;
   margin-top: 1%;
@@ -2093,7 +2094,7 @@ td.here-enter {
   font-weight: bold;
   color: red;
   font-family: <?php echo $typekit_bold;?>;
-  background-image: url('pixel_bomb.png');
+  background-image: url('<?php echo $cfg['web_root'];?>media/latest/pixel_bomb.png');
   background-size: 40px 40px;
   background-repeat: no-repeat;
   padding-left: 40px;
@@ -2188,7 +2189,7 @@ td.here-enter {
 }
 .ad_gen_left select, .ad_gen_right input#name {
   -moz-appearance: none;
-  background: rgba(0, 0, 0, 0) url("select-arrow.svg") no-repeat scroll 97% center / auto 50%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 97% center / auto 50%;
   border: 1px solid <?php echo $cfg['main_color'];?> ;
   color: <?php echo $cfg['main_color'];?>;
   float: left;
@@ -2211,7 +2212,7 @@ td.here-enter {
 }
 .ad_gen_right select {
   -moz-appearance: none;
-  background: #f3f3f3 url("select-arrow.svg") no-repeat scroll 90% center / auto 36%;
+  background: #f3f3f3 url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 90% center / auto 36%;
   border: medium none;
   color: <?php echo $cfg['main_color'];?>;
   font-family: <?php echo $typekit_optional;?>;
@@ -2307,7 +2308,7 @@ td.here-enter {
    height: auto;
 }
 .ad_file_name {
-  background: #ebfbff url("link.svg") no-repeat scroll 98% center / auto 72%;
+  background: #ebfbff url("<?php echo $cfg['web_root'];?>media/latest/link.svg") no-repeat scroll 98% center / auto 72%;
   height: 49px;
   margin-left: 0;
   padding: 0;
@@ -2394,11 +2395,11 @@ td.here-enter {
 }
 .style_none.size_bn_desc {
   font-family: <?php echo $typekit_optional;?>;
-  background: rgba(0, 0, 0, 0) url("select-arrow.svg") no-repeat scroll 94% center / auto 53%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 94% center / auto 53%;
 }
 .style_none.size_bn_asc {
   font-family: <?php echo $typekit_bold;?>;
-  background: rgba(0, 0, 0, 0) url("select-arrow-flip.svg") no-repeat scroll 94% center / auto 53%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/select-arrow-flip.svg") no-repeat scroll 94% center / auto 53%;
 }
 .ad_file_act_sh, .ad_file_act_del {
   border-bottom: medium none !important;
@@ -2418,10 +2419,10 @@ td.here-enter {
   
 }
 .ad_file_act_sh input {
-  background: #04cdf7 url("delete_link_activ.svg") no-repeat scroll center center / auto 90%;
+  background: #04cdf7 url("<?php echo $cfg['web_root'];?>media/latest/delete_link_activ.svg") no-repeat scroll center center / auto 90%;
 }
 .ad_file_act_del input {
-  background: #134953 url("delete.svg") no-repeat scroll center center / auto 60%;
+  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/delete.svg") no-repeat scroll center center / auto 60%;
 }
 /******************* Pagination**************/
  div.pagination span.disabled {
@@ -2470,7 +2471,7 @@ div.pagination span.current, .pagination a {
 }
 .ad_gen_bottom_right select {
   -moz-appearance: none;
-  background: #f2f2f2 url("select-arrow.svg") no-repeat scroll 94% center / auto 50%;
+  background: #f2f2f2 url("<?php echo $cfg['web_root'];?>media/latest/select-arrow.svg") no-repeat scroll 94% center / auto 50%;
   border: medium none;
   color: <?php echo $cfg['main_color'];?>;
   font-family: <?php echo $typekit_optional;?>;
@@ -2666,7 +2667,7 @@ div.pagination span.current, .pagination a {
   text-align: left;
 }
 .ad_loader {
-  background: rgb(249, 249, 249) url("page-loader.gif") no-repeat scroll 50% 50%;
+  background: rgb(249, 249, 249) url("<?php echo $cfg['web_root'];?>media/latest/page-loader.gif") no-repeat scroll 50% 50%;
   height: 100%;
   left: 0;
   opacity: 0.3;
@@ -2696,7 +2697,7 @@ span.m_color {
   font-size: 17px;
 }
 .asColorPicker-wrap {
-  background: rgba(0, 0, 0, 0) url("color_picker_activ.svg") no-repeat scroll 62.5% center / auto 72%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/color_picker_activ.svg") no-repeat scroll 62.5% center / auto 72%;
   float: right;
   width: 80%;
 }
@@ -3054,7 +3055,7 @@ Expander- CSS
   width: auto;
 }
 .expand_icons_total.down_icon, .expand_icons_total.up_icon, .expand_icon.down_icon, .expand_icon.up_icon {
-  background: rgba(0, 0, 0, 0) url("expand-arrow.svg") no-repeat scroll center center / auto 45%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/expand-arrow.svg") no-repeat scroll center center / auto 45%;
   cursor: pointer;
   float: left;
   font-size: 0;
@@ -3068,7 +3069,7 @@ Expander- CSS
   transform: scaleY(-1);
 }
 .expand_icon.down_icon, .expand_icon.up_icon { 
-  background: rgba(0, 0, 0, 0) url("expand-arrow.svg") no-repeat scroll center center / auto 45%;
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/expand-arrow.svg") no-repeat scroll center center / auto 45%;
   margin: 0 0 0 0;
   top: 2px;
   width: 40%;
