@@ -410,18 +410,23 @@ if (!jirafeau_is_viewable ($link['mime_type']) || !$cfg['preview'] || $do_downlo
 			}
 			
 			$zip->close();
-			$zipped_size = filesize($archive_file_name);
+			$zipped_size = filesize($link_1['file_name']);
 			header("Content-Description: File Transfer");
 			header("Content-type: application/zip"); 
+			header("Content-type: application/octet-stream");
 			header("Content-Type: application/force-download");// some browsers need this
 			header("Content-Disposition: attachment; filename=$archive_file_name");
+			header("Content-Transfer-Encoding: binary");
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			header('Pragma: public');
 			header("Content-Length:". " $zipped_size");
-			ob_clean();
-			flush();
-			readfile("$archive_file_name");
+			///ob_clean();
+			//flush();
+			//readfile("$archive_file_name");
+			ob_end_flush();
+            @readfile($cfg['web_root'].'/'.$archive_file_name);
+
 			unlink($archive_file_name); // Now delete the temp file (some servers need this option)
 			unlink($cfg['web_root'].'/'.$archive_file_name); // Now delete the temp file (some servers need this option)
 			unlink(JIRAFEAU_ROOT.$archive_file_name); // Now delete the temp file (some servers need this option)
