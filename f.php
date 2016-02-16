@@ -410,7 +410,7 @@ if (!jirafeau_is_viewable ($link['mime_type']) || !$cfg['preview'] || $do_downlo
 			}
 			
 			$zip->close();
-			$zipped_size = filesize($link_1['file_name']);
+			$zipped_size = filesize($archive_file_name);
 			header("Content-Description: File Transfer");
 			header("Content-type: application/zip"); 
 			header("Content-type: application/octet-stream");
