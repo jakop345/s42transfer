@@ -253,6 +253,20 @@ span.drag {
 .download-icon a.dn-icon:hover{
   background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/download_activ.svg") no-repeat scroll center center / auto 100%;
 }
+
+
+.download-icon a.dn-icon-pwd {
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/download.svg") no-repeat scroll center center / auto 100%;
+  float: left;
+  height: 25px;
+  position: relative;
+  width: 100%;
+}
+.download-icon a.dn-icon-pwd:hover{
+  background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/download_activ.svg") no-repeat scroll center center / auto 100%;
+}
+
+
 .pwd-protection {
   color: <?php echo $cfg['main_color'];?>;
   float: left;
@@ -1283,6 +1297,20 @@ form input#admin_password {
   padding: 1.5% 2%;
   width: 96%;
 }
+.download_links span .download_btn{
+   background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/share.svg") no-repeat scroll 98.8% center;
+  color: <?php echo $cfg['main_color'];?>;
+  float: left;
+  padding: 1.5%;
+  width: 100%;
+  border:none;
+  font-size:17px;
+  cursor:pointer;
+  text-align:left;
+	
+}
+
+
 .download_links span a:hover{
   background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/share_active.svg") no-repeat scroll 98.8% center;
 }
@@ -2369,6 +2397,9 @@ td.here-enter {
   float: left;
   padding-left: 1%;
   width: 42.6%;
+}
+.ad_file_name.ad_link {
+  padding: 0px;
 }
 .style_none {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;

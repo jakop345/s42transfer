@@ -34,9 +34,17 @@ if($cfg['typekit_fontreplacement']==1){
 	
 	$file_links = $_POST['file_links'];
 	$h = $_POST['web_root'].'f.php?h='.$_POST['file_links'].'&d=1';
-	$direct_Dwnload_url = get_tiny_url($h);
 	
-	$del_url = $_POST['web_root'].'f.php?h='.$_POST['file_links'].'&del=1';
+	// SEND generate_number with Email link
+	$generate_number  = $_POST['generate_number'];
+	
+	//$direct_Dwnload_url = get_tiny_url($h);
+	$direct_Dwnload_url =  $_POST['web_root'].'f.php?h='.$generate_number.'&mail=1'; 
+	
+	//$del_url = $_POST['web_root'].'f.php?h='.$_POST['file_links'].'&del=1';
+	$del_url =  $_POST['web_root'].'f.php?h='.$generate_number.'&del=1';
+	
+	
 	
 	
 	

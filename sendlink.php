@@ -25,12 +25,12 @@ require (JIRAFEAU_ROOT . 'lib/config.local.php');
 require (JIRAFEAU_ROOT . 'lib/settings.php');
 require (JIRAFEAU_ROOT . 'lib/functions.php');
 
-if (!isset ($_GET['h']) || empty ($_GET['h']))
+if (!isset ($_POST['h']) || empty ($_POST['h']))
 {
     header ('Location: ' . $cfg['web_root']);
     exit;
 }
-if (!isset ($_GET['s']) || $_GET['s'] !=1)
+if (!isset ($_POST['s']) || $_POST['s'] !=1)
 {
     header ('Location: ' . $cfg['web_root']);
     exit;
@@ -46,8 +46,15 @@ if (!isset ($_GET['s']) || $_GET['s'] !=1)
 require (JIRAFEAU_ROOT . 'lib/template/header.php');
 require (JIRAFEAU_ROOT . 'mailer.php');
 
-$link_name1 = $_GET['h'];
+$link_name1 = $_POST['h'];
 $link_nameArr = explode('@',$link_name1);
+
+ $nbr = mt_rand(5, 15);
+ $nbr  =  $nbr.time();
+$cfg['generate_number'][$nbr] = $link_name1;
+ //$cfg[$nbr] = $link_name1;
+ jirafeau_export_cfg_custom($cfg);
+ 
 ?>
 
 <div id="mail_sent" class="mail_sent" style="display:none" >
@@ -67,6 +74,7 @@ $link_nameArr = explode('@',$link_name1);
 	 
 	 <input type="hidden" name="file_links" value="<?php echo $link_name1; ?>"/>
 	 <input type="hidden" name="web_root" value="<?php echo $cfg['web_root']; ?>"/>
+	 <input type="hidden" name="generate_number" value="<?php echo $nbr; ?>"/>
 	<?php 
 		$counter = 0;
 		$total = 0;

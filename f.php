@@ -17,6 +17,8 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+
 define ('JIRAFEAU_ROOT', dirname (__FILE__) . '/');
 
 require (JIRAFEAU_ROOT . 'lib/lang.php');
@@ -24,7 +26,60 @@ require (JIRAFEAU_ROOT . 'lib/config.original.php');
 require (JIRAFEAU_ROOT . 'lib/settings.php');
 require (JIRAFEAU_ROOT . 'lib/functions.php');
 
-if (!isset ($_GET['h']) || empty ($_GET['h']))
+/* 
+ Get parameter from mail url and force download files
+*/
+if (isset ($_GET['mail']) && $_GET['mail']==1)
+{
+	if(isset($_GET['h']) && !empty($_GET['h'])){
+	  //echo "<pre>";
+      //print_r($cfg['generate_number']);    
+	 
+	  $file_code = $cfg['generate_number'][$_GET['h']];
+	  if(!empty($file_code)){
+		  $_POST['h'] = $file_code;
+		  $_POST['d'] = 1;
+	  }else{
+		 header ('Location: ' . $cfg['web_root']);
+        exit;
+	  }
+	 
+	}
+	else{
+		header ('Location: ' . $cfg['web_root']);
+       exit;
+	}
+}
+
+
+/* 
+ Get parameter from mail url and delete files
+*/
+if (isset ($_GET['del']) && $_GET['del']==1)
+{
+	if(isset($_GET['h']) && !empty($_GET['h'])){
+	  //echo "<pre>";
+      //print_r($cfg['generate_number']);    
+	 
+	  $file_code = $cfg['generate_number'][$_GET['h']];
+	  if(!empty($file_code)){
+		  $_POST['h'] = $file_code;
+		  $_POST['del'] = 1;
+	  }else{
+		 header ('Location: ' . $cfg['web_root']);
+        exit;
+	  }
+	 
+	}
+	else{
+		header ('Location: ' . $cfg['web_root']);
+       exit;
+	}
+}
+
+
+
+if (!isset ($_POST['h']) || empty ($_POST['h']))
 {
     header ('Location: ' . $cfg['web_root']);
     exit;
@@ -42,7 +97,7 @@ if (!isset ($_GET['h']) || empty ($_GET['h']))
 @error_reporting(0);
 
 
-$link_name1 = $_GET['h'];
+$link_name1 = $_POST['h'];
 $link_nameArr = explode('@',$link_name1);
 $link_name = $link_nameArr[0];
 
@@ -85,19 +140,19 @@ if (count ($link) == 0)
 }
 
 $delete_code = '';
-if (isset ($_GET['d']) && !empty ($_GET['d']) &&  $_GET['d'] != '1')
-    $delete_code = $_GET['d'];
+if (isset ($_POST['d']) && !empty ($_POST['d']) &&  $_POST['d'] != '1')
+    $delete_code = $_POST['d'];
 
 $crypt_key = '';
 if (isset ($_GET['k']) && !empty ($_GET['k']))
     $crypt_key = $_GET['k'];
 
 $do_download = false;
-if (isset ($_GET['d']) && $_GET['d'] == '1')
+if (isset ($_POST['d']) && $_POST['d'] == '1')
     $do_download = true;
 
 $do_preview = false;
-if (isset ($_GET['p']) && !empty ($_GET['p']))
+if (isset ($_POST['p']) && !empty ($_POST['p']))
     $do_preview = true;
 
 $p = s2p ($link['md5']);
@@ -118,11 +173,11 @@ if (!file_exists (VAR_FILES . $p . $link['md5']))
 
 
 /**
-Delete fiels after upload FROM SENDER EMAILs
+Delete fiels after share by SENDER from their EMAIL
 */
-if (isset($_GET['del']) && $_GET['del']==1)
+if (isset($_POST['del']) && $_POST['del']==1)
 {
-	$delete_code = $_GET['h'];
+	$delete_code = $_POST['h'];
 	$delete_codeArr = explode('@',$delete_code);
 	foreach($delete_codeArr as $dlt){
 		$link_name = $dlt;
@@ -170,7 +225,7 @@ Delete fiels after upload
 */
 if (!empty ($delete_code))
 {
-	$delete_code = $_GET['h'];
+	$delete_code = $_POST['h'];
 	$delete_codeArr = explode('@',$delete_code);
 	foreach($delete_codeArr as $dlt){
 		$link_name = $dlt;
@@ -244,7 +299,7 @@ if (!empty ($link['key']))
 				$zipEstimate +=  $link_dn['file_size'];
 				
 				 echo '<div class="fileList">';				 
-				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon">   <a class="dn-icon" id="'.$links_dn.'" href="javascript:void(0);"> </a> </span>   ';
+				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon">   <a class="dn-icon-pwd" id="'.$links_dn.'" href="javascript:void(0);"> </a> </span>   ';
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
 				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>'; 
 				 echo '</div>';
@@ -275,16 +330,26 @@ if (!empty ($link['key']))
                  //'</div>';
 			}
 
-        ?><div class="dn_submit"><input type="submit" id = "submit_download"  value="<?php echo t('Download all'); ?>"
+        ?>
+		 <input type="hidden" name="h" value="<?php echo $_POST['h'];?>"/>	
+		  <input type="hidden" name="d" value="1"/>
+		
+		<div class="dn_submit"><input type="submit" id = "submit_download"  value="<?php echo t('Download all'); ?>"
         onclick="document.getElementById('submit_post').action='
 			<?php
-					echo $cfg['web_root'] . '/f.php?h=' . $_GET['h'] . '&amp;d=1';
+					echo $cfg['web_root'] . '/f.php';
 					if (!empty($crypt_key))
 						echo '&amp;k=' . urlencode($crypt_key);
 			?>';
         document.getElementById('submit_download').submit ();"/><?php
        
-        echo '</div></div></fieldset></form></div>';
+        echo '</div></div></fieldset></form>
+		<form id="single_download_form_pwd" action="'.$cfg['web_root'].'/f.php" method="post">
+		  <input type="hidden" id="single_download_pwd"  name="h" value=""/>
+		  <input type="hidden" name="d" value="1"/>		  
+		  <input type = "password" name = "key" id="pwd-keys-copy" placeholder="Password" style="display:none;"/>		  
+		</form>		
+		</div>';
         require (JIRAFEAU_ROOT.'lib/template/footer.php');
         exit;
     }
@@ -308,6 +373,7 @@ if (!empty ($link['key']))
 
 if (!$password_challenged && !$do_download && !$do_preview)
 {
+	
         require (JIRAFEAU_ROOT.'lib/template/header.php');
         echo '<div class="download_page download_page_below">' .
 		      
@@ -326,7 +392,7 @@ if (!$password_challenged && !$do_download && !$do_preview)
 				$zipEstimate +=  $link_dn['file_size'];
 				
 				 echo '<div class="fileList">';				 
-				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon"><a id="'.$links_dn.'" class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"></a></span>   ';
+				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon"><a id="'.$links_dn.'" class="dn-icon" href="javascript:void(0);"></a></span>   ';
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
 				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>'; 
 				 echo '</div>';
@@ -344,12 +410,15 @@ if (!$password_challenged && !$do_download && !$do_preview)
                  //t('Warning, this file will self-destruct after being read') .
                  //'</div>';
         }
-
+	
         ?>
+		  <input type="hidden" name="h" value="<?php echo $_POST['h'];?>"/>	
+		  <input type="hidden" name="d" value="1"/>
+		  
         <div class="dn_submit"><input type="submit" id = "submit_download"  value="<?php echo t('Download all'); ?>"
         onclick="document.getElementById('submit_post').action='
 		<?php
-				echo $cfg['web_root'] . '/f.php?h=' . $_GET['h'] . '&amp;d=1';
+				echo $cfg['web_root'] . '/f.php?h=' . $_POST['h'] . '&amp;d=1';
 				if (!empty($crypt_key))
 					echo '&amp;k=' . urlencode($crypt_key);
 		?>';
@@ -357,7 +426,12 @@ if (!$password_challenged && !$do_download && !$do_preview)
 
         
         echo '</div>';
-        echo '</div></fieldset></form></div>';
+        echo '</div></fieldset></form>
+		<form id="single_download_form" action="'.$cfg['web_root'].'/f.php" method="post">
+		  <input type="hidden" id="single_download"  name="h" value=""/>
+		  <input type="hidden" name="d" value="1"/>		  
+		</form>
+		</div>';
         require (JIRAFEAU_ROOT.'lib/template/footer.php');
         exit;
 }
@@ -379,7 +453,8 @@ if (!jirafeau_is_viewable ($link['mime_type']) || !$cfg['preview'] || $do_downlo
 	 * force to download in zip format.
     */
 		
-		$link_name_temp  =$_GET['h'];
+		$link_name_temp  =$_POST['h'];
+		
 		if (strpos($link_name_temp,'@') !== false) {          
 		   $archive_file_name='s42.transfer.zip';
          }else{			
@@ -397,7 +472,7 @@ if (!jirafeau_is_viewable ($link['mime_type']) || !$cfg['preview'] || $do_downlo
 				exit("cannot open <$archive_file_name>\n");
 			}
 			
-			$link_name_new  =$_GET['h'];
+			$link_name_new  =$_POST['h'];
 			$link_name_new_1 = explode('@',$link_name_new);
 			foreach($link_name_new_1 as $links){
 				 $link_1 = jirafeau_get_link ($links);

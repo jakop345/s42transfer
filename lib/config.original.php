@@ -124,7 +124,7 @@ $cfg['logo_resolation']="Logo_Retina.png";
 $cfg['favicon']="favicon.png";
 $cfg['touchicon']="S42_Touchicon_neu_144.png";
 
-$cfg['temp1']="1000";
+$cfg['temp1']="100";
 $cfg['temp2']="";
 $cfg['temp3']="";
 $cfg['temp4']="";

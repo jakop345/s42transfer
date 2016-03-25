@@ -800,16 +800,16 @@ jirafeau_admin_list_custom ($name, $file_hash, $link_hash,$action, $action_list=
 		  //echo $file_d['file_name']."    ";.
 		  ?>
 		  <div class="ad_single_cover" style="background:#ccc; margin-bottom:10px;">
-		  <a title="<?php echo t('Download'); ?>" target="_blank" href="<?php echo $cfg['web_root'].'f.php?h='.$file_d['hash_code'];?>">
+		  <!--a title="<?php echo t('Download'); ?>" target="_blank" href="<?php //echo $cfg['web_root'].'f.php?h='.$file_d['hash_code'];?>"-->
 		      <div class="ad_file_name ad_link"> 
-			     <!--form action = "f.php?h=<?php //echo $file_d['hash_code']; ?>&amp;d=1" method = "post">
-                 <input type = "hidden" name = "action" value = "download"/>
-                 <input type = "hidden" name = "link" value = "<?php //echo $file_d['hash_code']; ?>"/>
-                 <input type = "submit" class="style_none" value = "<?php// echo  htmlspecialchars($file_d['file_name'])?>" />
-                </form-->
-				<?php echo  htmlspecialchars($file_d['file_name'])?>
+			     <form action = "f.php" method = "post" target="_blank">
+                 <!--input type = "hidden" name = "action" value = "download"/-->
+                 <input type = "hidden" name = "h" value = "<?php echo $file_d['hash_code']; ?>"/>
+                 <input type = "submit" class="style_none" value = "<?php echo  htmlspecialchars($file_d['file_name'])?>" />
+                </form>
+				<?php //echo  htmlspecialchars($file_d['file_name'])?>
 			  </div>
-			</a> 
+			<!--/a--> 
 		      <div class="ad_file_type"><?php echo $file_d['mime_type']?> </div>
 		      <div class="ad_file_size"> <?php echo jirafeau_human_size($file_d['file_size']);?></div>
 			 

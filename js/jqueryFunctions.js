@@ -317,16 +317,47 @@
 		  
 		  
 		  
-		  //Password protected form submit download image
+		  //Password protected form submit and force single file download. 
+		  
+		    $( ".dn-icon-pwd" ).click(function() {				 
+			   /*
+			    var siteName = $("#site-name").val();			   
+				var actionNew =  siteName+'?h='+$( this ).attr('id')+'&d=1';				   
+			     $( "#submit_post" ).attr('action',actionNew);			   
+			     $( "#submit_post" ).submit();
+				 */
+				 $("#single_download_pwd").val($( this ).attr('id')); 
+			     $( "#single_download_form_pwd" ).submit();
+			 
+			});
+			
+			// Transfer typed password for single download
+			
+			$( "#pwd-keys" ).keyup(function() {
+                
+				$("#pwd-keys-copy").val($( this ).val()); 
+            });
+		  
+		  //Without password protected force  single file download.
 		  $( ".dn-icon" ).click(function() {
-			   var siteName = $("#site-name").val();			   
-				var actionNew =  siteName+'?h='+$( this ).attr('id')+'&d=1';
-				   
-			   $( "#submit_post" ).attr('action',actionNew);
-			   
-			  $( "#submit_post" ).submit();
+			 
+			  $("#single_download").val($( this ).attr('id')); 
+			  $( "#single_download_form" ).submit();
 			  
 			});
+			
+		  //Preview Image show on click
+		  $("body").on( 'click', '.pre_link', function() { 
+			 var getId =  $( this ).attr('id');
+			  $( "."+getId ).submit();							  
+			});
+			
+			
+			//Share form submit and send mail  to friends				
+           $("body").on( 'click', '.share-link', function() {			  
+			  $( "#share_form" ).submit();			  
+			});
+			
 			
 			
 			
@@ -335,7 +366,7 @@
 				 var siteUrl = $("#web_root").val();
 				 var str = $('#file-code').val();
 						$.ajax({
-						type: "GET",
+						type: "POST",
 						url: siteUrl+'f.php',
 						data: str,
 						cache: false,

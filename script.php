@@ -572,10 +572,31 @@ elseif (isset ($_GET['end_async']))
 			 
 
 			  echo '<div class="send-links-ht"><div class="download_links">'; 
-			     echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'">'.t('Download page').'</a></span>';
+			     //echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'">'.t('Download page').'</a></span>';
+				 
+				  //22 March 2016  $_GET['end_async']
+				 echo '<form action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
+				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>				  
+					   <span class="download_link">
+					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Download page').'"/>
+					   </span>
+					   </form>';
+				 
+				 
 				 //echo '<span class="download_link"><a href="'.$cfg['web_root'].'f.php?h='.$dnld_link_1.'&amp;d=1">Direktlink</a></span>';
-				 echo '<span class="download_link"><a href="'. $dwnload.'&amp;d=1">'.t('Direct download').'</a></span>';
+				 //echo '<span class="download_link"><a href="'. $dwnload.'&amp;d=1">'.t('Direct download').'</a></span>';
+				 
+				 //22 March 2016 $_GET['end_async']
+				 echo '<form action="'.$cfg['web_root'].'f.php" method="post">
+				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>
+					   <input type="hidden" name="d" value="1"/>
+					  
+					   <span class="download_link">
+					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
+					   </span>
+					   </form>';
 				
+				//IMage  preview
 				$counter = 1;
 				 foreach($dnld_link as $view_link){	
 				   $allowed = array('png', 'jpg', 'gif','bmp','jepg');
@@ -586,10 +607,19 @@ elseif (isset ($_GET['end_async']))
 							$h = $cfg['web_root'].'f.php?h='.$view_link.'';
 							 $p= '&amp;p=1';
 							 if($counter ==1){
-						      echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
+						      //echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
 							 }else{
-								echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
+								//echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
 							 }
+							 
+							 //Insert Form with post method to preview single image
+							  echo '<form class="'.$view_link.'" action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
+									   <input type="hidden" name="h" value="'.$view_link.'"/>
+									   <input type="hidden" name="p" value="1"/>								   
+									   
+									   <span class="download_link pre_link" id="'.$view_link.'"><a class=""  href="javascript:void(0);"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>
+									   </form>';
+							 
 								
 						 }
 					$counter++;	
@@ -605,7 +635,12 @@ elseif (isset ($_GET['end_async']))
 			 $sharlink_url = get_tiny_url($sharlink);
 			 
 			if(isset($cfg['sharing_enable']) && $cfg['sharing_enable'] ==1){
-			     echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
+			     //echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
+				  echo '<form id="share_form" action="'.$cfg['web_root'].'sendlink.php" method="post">
+				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>
+					   <input type="hidden" name="s" value="1"/>					  
+					    <div class="send_links"><a class="share-link" href="javascript:void(0);" >Share your file(s)</a></div>
+					   </form>';
 			  }
 			echo '</div>';
 			 
@@ -636,6 +671,9 @@ elseif (isset ($_GET['end_async']))
 }
 
 /* Finalize an Classic upload end. */
+/* Finalize an Classic upload end. */
+/* Finalize an Classic upload end. */
+/* Finalize an Classic upload end. */
 elseif (isset ($_GET['end_classic']))
 {
 	
@@ -659,10 +697,31 @@ elseif (isset ($_GET['end_classic']))
 			 //$direct_Dwnload_url = get_tiny_url($direct_Dwnload);		   
 
 			 echo '<div class="send-links-ht"><div class="download_links">'; 
-			 echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'"> '.t('Download page').'</a></span>';
-			 echo '<span class="download_link"><a href="'.$direct_Dwnload.'">'.t('Direct download').'</a></span>';
+			// echo '<span class="download_link"><a target="_blank" href="'.$dwnload.'"> '.t('Download page').'</a></span>';
+			
+			//22 March 2016
+				 echo '<form action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
+				       <input type="hidden" name="h" value="'.$link_list_all.'"/>				  
+					   <span class="download_link">
+					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Download page').'"/>
+					   </span>
+					   </form>';			
+
+			 //echo '<span class="download_link"><a href="'.$direct_Dwnload.'">'.t('Direct download').'</a></span>';
+			 
+			  //22 March 2016
+				 echo '<form action="'.$cfg['web_root'].'f.php" method="post">
+				       <input type="hidden" name="h" value="'.$link_list_all.'"/>
+					   <input type="hidden" name="d" value="1"/>
+					  
+					   <span class="download_link">
+					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
+					   </span>
+					   </form>';
+			 
+			 
 				
-			//View Link	
+			//View Link	 Image
 			 $counter = 1;
 			 foreach($link_listArr as $view_link){	
 			  $allowed = array('png', 'jpg', 'gif','bmp','jepg');
@@ -677,10 +736,17 @@ elseif (isset ($_GET['end_classic']))
 				
 				
 				 if($counter ==1){
-				    echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
+				    //echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
 				 }else{
-				  echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
+				  //echo '<span class="download_link"><a target="_blank" href="'.$h.$p.'"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>'; 
 				 }
+				 
+				  echo '<form class="'.$view_link.'" action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
+									   <input type="hidden" name="h" value="'.$view_link.'"/>
+									   <input type="hidden" name="p" value="1"/>								   
+									   
+									   <span class="download_link pre_link" id="'.$view_link.'"><a class=""  href="javascript:void(0);"><span class="prr_img">Preview</span> <span class="img_preview">'.$v_link['file_name'].'</span></a></span>
+									   </form>';
 								
 			    }
 			   $counter++;	
@@ -688,7 +754,7 @@ elseif (isset ($_GET['end_classic']))
 			  echo "</div>";
 		     }
 			 
-			//Send Links
+			//Send Links to friends
 			  $h = $cfg['web_root'].'sendlink.php?h='.$link_list_all.'';
 			  $s= '&amp;s=1';
 			  
@@ -696,7 +762,13 @@ elseif (isset ($_GET['end_classic']))
 			  $sharlink_url = get_tiny_url($sharlink);
 			  
 			 if(isset($cfg['sharing_enable']) && $cfg['sharing_enable'] ==1){
-			     echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
+			     //echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
+				 
+				 echo '<form id="share_form" action="'.$cfg['web_root'].'sendlink.php" method="post">
+				       <input type="hidden" name="h" value="'.$link_list_all.'"/>
+					   <input type="hidden" name="s" value="1"/>					  
+					    <div class="send_links"><a class="share-link" href="javascript:void(0);" >Share your file(s)</a></div>
+					   </form>';
 			  }
 			 
 			echo '</div>';
