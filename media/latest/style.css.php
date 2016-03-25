@@ -195,7 +195,7 @@ span.drag {
 }
 #add_file_wrapper::before {
   background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/add_small.svg") no-repeat scroll 95.5% center / auto 100%;
-  color: #c3c3c3;
+  color: <?php echo $cfg['main_color'];?>;
   content: "Add more files";
   position: absolute;
   width: 100%;
@@ -228,7 +228,7 @@ span.drag {
   width: 100%;
 }
 #add_file_wrapper {
-  border-bottom: 1px solid #c3c3c3;
+  border-bottom: 1px solid <?php echo $cfg['main_color_light'];?>;
   float: left;
   padding: 1.7% 2%;
   width: 96%;
@@ -378,6 +378,8 @@ input[type="password"] {
   border: 1;
   padding: 5px 5px;
   font-size: 1em;
+  border:1px solid <?php echo $cfg['main_color'];?>;
+  color:<?php echo $cfg['main_color'];?>;
 }
 
 
@@ -486,7 +488,7 @@ body._drag .bgImg-first::before {
   min-height: 30em;
 }
 #uploaded_speed {
-  color: #01cefe;
+  color: <?php echo $cfg['main_color_light'];?>;
   position: absolute;
   text-align: center;
   top: 90px;
@@ -579,7 +581,7 @@ body._drag .bgImg-first::before {
   color: <?php echo $cfg['main_color_light'];?>;
 }
 .current_file_name {
-  color: #134953;
+  color: <?php echo $cfg['main_color'];?>; 
   float: left; 
   padding-left: 2%;
   width: 68%;
@@ -587,7 +589,7 @@ body._drag .bgImg-first::before {
   word-break: break-all;
 }
 .current_file_size {
-  color: #01cefe !important;
+  color: <?php echo $cfg['main_color_light'];?>;
   float: right;
   padding-right: 2%;
   text-align: right;
@@ -637,7 +639,7 @@ body._drag .bgImg-first::before {
   cursor: pointer;
 }
 #uploaded_time {
-  color: #01cefe; 
+  color: <?php echo $cfg['main_color_light'];?>;
   text-align: center;
 }
 
@@ -1001,10 +1003,11 @@ color: #fff;
 
 #option_table tr td input#input_key {
   background: #ffffff none repeat scroll 0 0;
-  border: 1px solid #c3c3c3;
+  border: 1px solid <?php echo $cfg['main_color'];?>;
   padding: 3%;
   margin-top: 3%;
   width: 93%;
+  color:<?php echo $cfg['main_color'];?>;
 }
 #option_table tr td select#select_time {
   -webkit-appearance: none;	
@@ -2198,7 +2201,7 @@ td.here-enter {
   width: 100%;
 }
 #tabs1-gen h2 {
-  color: #01cefe;
+  color: <?php echo $cfg['main_color_light'];?>;
   float: left;
   font-size: 32px;
   font-family: <?php echo $typekit_normal;?>;
@@ -2263,22 +2266,29 @@ td.here-enter {
   width: 98%;
 }
 .ad_gen_left input {
-  padding: 1.6% 4%!important;
+  padding: 1.4% 4%!important;
 }
 .ad_gen_left input, .ad_gen_right input {
-  background: #134953 none repeat scroll 0 0;
+  background: <?php echo $cfg['main_color'];?> none repeat scroll 0 0;
   border: medium none;
   box-sizing: border-box;
-  color: #ffffff;
+  color: <?php echo $cfg['main_color_light'];?>;
+   border: 1px solid rgba(0, 0, 0, 0);
   float: left;
   font-size: 17px;
   font-weight: bold;
   font-family: <?php echo $typekit_bold;?>;
   margin-left: 1%;
-  padding: 1.6% 2%;
+  padding: 1.4% 2%;
   position: relative;
   cursor: pointer;
 }
+
+.ad_gen_left input:hover, .ad_gen_right input:hover{
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid <?php echo $cfg['main_color_light'];?>;	
+}
+
 .ad_single_cover:first-child {
   height: auto;
 }
@@ -2450,10 +2460,10 @@ td.here-enter {
   
 }
 .ad_file_act_sh input {
-  background: #04cdf7 url("<?php echo $cfg['web_root'];?>media/latest/delete_link_activ.svg") no-repeat scroll center center / auto 90%;
+  background: <?php echo $cfg['main_color_light'];?> url("<?php echo $cfg['web_root'];?>media/latest/delete_link_activ.svg") no-repeat scroll center center / auto 90%;
 }
 .ad_file_act_del input {
-  background: #134953 url("<?php echo $cfg['web_root'];?>media/latest/delete.svg") no-repeat scroll center center / auto 60%;
+  background: <?php echo $cfg['main_color'];?> url("<?php echo $cfg['web_root'];?>media/latest/delete.svg") no-repeat scroll center center / auto 60%;
 }
 /******************* Pagination**************/
  div.pagination span.disabled {
@@ -3020,7 +3030,7 @@ p.ad_tpye_content textarea {
   float: left;
 }
 .ad_setting_fiels > form #ad_settings_detail .ad_sttng {
-  border-bottom: 1px solid #01cefe;
+  border-bottom: 1px solid <?php echo $cfg['main_color_light'];?>;
   margin-left: 0;
   padding-left: 2%;
   width: 98%;
@@ -3103,7 +3113,7 @@ Expander- CSS
   background: rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/expand-arrow.svg") no-repeat scroll center center / auto 45%;
   margin: 0 0 0 0;
   top: 2px;
-  width: 40%;
+  width: 33%;
 }
 
 /* ==========================================================================
