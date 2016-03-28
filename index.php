@@ -139,8 +139,15 @@ if (jirafeau_has_upload_password ($cfg))
 <!--Uploading done-->
 <div id="upload_done" class="upload_done" style="display:none;">
     <div id="upload_done_download_page" class="upload_done_download_page">
-	    <span class="done_image"></span>
-	    <span class="done_txt">Done!</span>
+    <!--<span class="done_image"></span>-->
+<div id="cont-count-done" data-pct="100">
+<svg id="svg-count-done" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+  <circle id="bar-count-done" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+</svg>
+</div>
+
+	    <span class="done_txt count_done_txt">Done!</span>
 		<div id="dvCountDown_done" >
            You will redirect in <span id = "lblCount_done"></span>sec. if not click <a  href="javascript:void(0);" class="if_not_redirect">here</a>
         </div>

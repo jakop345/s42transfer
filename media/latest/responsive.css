@@ -263,6 +263,9 @@ span.m_color {
 .ad_gen_right input#name{
 	margin-top: 0;
 }
+#svg-count-done {
+  margin-left: 15.5%;
+}
 /*====General CSS Ends==*/
 
 
@@ -533,6 +536,9 @@ span.m_color {
 }
 .ad_gen_right input#name{
 	margin-top: 0;
+}
+#svg-count-done {
+  margin-left: 20.5%;
 }
 /*====General CSS Ends==*/
 /*====Admin CSS Ends==*/
