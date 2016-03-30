@@ -1313,6 +1313,9 @@ form input#admin_password {
   text-align:left;
 	
 }
+.download_links span .download_btn:hover{
+  background: rgba(0, 0, 0, 0) url("http://www.web-hike.com/Jirafeau-master/media/latest/share_active.svg") no-repeat scroll 98.8% center;
+}
 
 
 .download_links span a:hover{
@@ -3134,13 +3137,95 @@ Expander- CSS
   background-color: <?php echo $cfg['main_color'];?>;
   background:url("<?php echo $cfg['web_root'];?>media/latest/right122.png") no-repeat scroll center top transparent !important;
   margin-left: 26.5%;
-  margin-top: 10%;
+  margin-top: 5.6%;
   background-position:52% 40% !important;
 }
 .count_done_txt {
   margin-top: -30px !important;
 }
 
+
+
+/************************************************ Clip Board Css*****************/
+.download_links span a#copyButton{
+  background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/clipboard.svg") no-repeat scroll 98.8% center;
+  color: <?php echo $cfg['main_color'];?>;
+  width:98%;
+ }
+ .download_links span a#copyButton:hover{
+  background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/clipboard_active.svg") no-repeat scroll 98.8% center;
+  color: <?php echo $cfg['main_color'];?>;
+  width:98%;
+ }
+ .clipBoardUrl_list a.copyButton1{
+	 background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/clipboard.svg") no-repeat scroll 49.8% center;
+     color: <?php echo $cfg['main_color'];?>;
+	  height: 25px;
+      width: 100%; 
+ }
+ .clipBoardUrl_list a.copyButton1:hover{
+	  background:rgba(0, 0, 0, 0) url("<?php echo $cfg['web_root'];?>media/latest/clipboard_active.svg") no-repeat scroll 49.8% center;
+     color: <?php echo $cfg['main_color'];?>;
+	 height: 25px;
+      width: 100%;
+ }
+ 
+ 
+.clip-board-txt {
+  background-color: #E7ECED!important;
+  border: medium none !important;
+  font-size: 17px!important;
+  min-height: 40px!important;
+  height: 57px!important;
+  padding: 2% 1% 1% 3% !important;
+  width: 96%!important;
+   font-family: Arial,sans-serif;
+    margin:0px!important;
+}
+.clip-board-txt-dn-page{
+	 background-color: #E7ECED!important;
+  border: medium none !important;
+  font-size: 17px!important;
+  min-height: 40px!important;
+  padding: 0.2% 2% 0%!important;
+  width: 77%!important;
+   font-family: Arial,sans-serif;
+    margin:0px!important;
+}
+
+
+
+.clipBoardUrl_list{
+    padding: 4% 0 0;
+    width: 100%;
+	float:left;
+	margin:2% 0;
+	background-color: #E7ECED;
+	display:none;
+}
+.text-copied {
+    float: left;
+    margin-left: 19%;
+    width: 100%;
+   color: <?php echo $cfg['main_color_light'];?>;
+}
+.text-copied-upload{
+	  color: <?php echo $cfg['main_color_light'];?>;
+	    float: right;
+  margin-right: 10%;
+}
+.clip-icon {
+  width: 16% !important;
+}
+.copyButton1.download-icon {
+  margin-right: -35%;
+}
+.download_links span a#copyButton-safari, .clipBoardUrl_list a.safariCl{
+  background: none!important;
+  color: <?php echo $cfg['main_color'];?>;
+  width: 98%;
+  cursor: default;
+}
 /* ==========================================================================
 Expander- CSS ENDS
 ========================================================================== */

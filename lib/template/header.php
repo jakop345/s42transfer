@@ -59,6 +59,8 @@ else
   <script src="<?php echo $web_root . 'js/jqueryFunctions.js';?>" type="text/javascript"></script>
   <script src="<?php echo $web_root . 'js/jquery.easytabs.min.js';?>" type="text/javascript"></script>
   <script src="<?php echo $web_root . 'js/jquery.dragbetter.js';?>" type="text/javascript"></script>
+  <script src="<?php echo $web_root . 'js/jquery.zclip.js';?>" type="text/javascript"></script>
+  <script src="<?php echo $web_root . 'js/clipboard.min.js';?>" type="text/javascript"></script>
 
 <?php
 	// To implement type kit if enabled

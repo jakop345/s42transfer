@@ -49,12 +49,12 @@ require (JIRAFEAU_ROOT . 'mailer.php');
 $link_name1 = $_POST['h'];
 $link_nameArr = explode('@',$link_name1);
 
- $nbr = mt_rand(5, 15);
+/* $nbr = mt_rand(5, 15);
  $nbr  =  $nbr.time();
 $cfg['generate_number'][$nbr] = $link_name1;
  //$cfg[$nbr] = $link_name1;
  jirafeau_export_cfg_custom($cfg);
- 
+ */
 ?>
 
 <div id="mail_sent" class="mail_sent" style="display:none" >
@@ -74,7 +74,7 @@ $cfg['generate_number'][$nbr] = $link_name1;
 	 
 	 <input type="hidden" name="file_links" value="<?php echo $link_name1; ?>"/>
 	 <input type="hidden" name="web_root" value="<?php echo $cfg['web_root']; ?>"/>
-	 <input type="hidden" name="generate_number" value="<?php echo $nbr; ?>"/>
+	 <input type="hidden" name="generate_number" value="<?php echo $_POST['generate_number']; ?>"/>
 	<?php 
 		$counter = 0;
 		$total = 0;

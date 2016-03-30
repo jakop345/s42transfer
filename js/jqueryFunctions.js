@@ -30,7 +30,19 @@
 		
 			$('.file_select_before').removeAttr("multiple");
 			$('.file_select').removeAttr("multiple");
+			
+			$('#copyButton1').addClass("safariCl"); //Remove clipBoard icon
+			$('#copyButton').addClass("safariCl"); //Remove clipBoard icon
 		}
+		
+		else if(isSafari1 ==true && OSName=="MacOS" ){
+		
+			$('#copyButton1').addClass("safariCl"); //Remove clipBoard icon
+			$('#copyButton').addClass("safariCl"); //Remove clipBoard icon
+			
+		}
+		
+		
 		
 		// Click on Add files icon, 
 		$('a#addFile').on('click', function () { 
@@ -627,11 +639,138 @@
 			  
 			  
 			  
+		/**###############################*********************************** Copy link to Clipboard*****/
+           /*$("a#copy-dynamic").zclip({
+			   path:"ZeroClipboard.swf",
+			   copy:function(){return $("input#dynamic").val();},			    
+               afterCopy: function()
+               {
+                   console.log($('#fe_text').val() + " was copied to clipboard");
+               }
+           });*/
+		   
+		   //Clip board list show hide on download page
+			$( ".fileList" ).hover(
+			  function() {
+				//$( this ).append( $( "<span> ***</span>" ) );
+			  }, function() {
+				//$( this ).find( "span:last" ).remove();
+			  }
+			);
+			$( ".fileList" ).css('cursor','pointer');
+			$('.fileList').hover(function () {
+              $(this).find('.clipBoardUrl_list').toggle();
+            });
+			
+			//Copy to clip board on Complete Upload
+			
+			//var clipboard = new Clipboard('#copyButton');
+			var clipboard = new Clipboard('#copyButton', {
+						text: function(trigger) {
+							return trigger.getAttribute('aria-label');
+						}
+					});
+			 clipboard.on('success', function(e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);				
+				$( ".text-copied-upload" ).show().fadeOut(4000);				
+				
+				$("#copyTarget").focus(function() {
+					
+						var $this = $(this);
+						$this.select();
+
+						// Work around Chrome's little problem
+						$this.mouseup(function() {
+							// Prevent further mouseup intervention
+							$this.unbind("mouseup");
+							return false;
+						});
+					});				
+					
+					
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function(e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+				
+			});
+			
+			
+			//Copy to clip board on Download page
+			
+		   //var clipboard = new Clipboard('.copyButton1');
+		   var clipboard = new Clipboard('.copyButton1', {
+				text: function(trigger) {					
+					return trigger.getAttribute('aria-label');					
+				}
+			});
+			clipboard.on('success', function(e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);				
+				$( e.trigger ).next().show().fadeOut(4000);
+				
+				$(".clip-board-txt-dn-page").focus(function() {
+						var $this = $(this);
+						$this.select();
+
+						// Work around Chrome's little problem
+						$this.mouseup(function() {
+							// Prevent further mouseup intervention
+							$this.unbind("mouseup");
+							return false;
+						});
+					});
+
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function(e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+				
+        
+            //FOCUS on Copy link Area		
+			//$(".clip-board-txt-dn-page").focus(function() {
+			$("body").on( 'focus', '.clip-board-txt-dn-page', function() {	
+						var $this = $(this);
+						$this.select();
+
+						// Work around Chrome's little problem
+						$this.mouseup(function() {
+							// Prevent further mouseup intervention
+							$this.unbind("mouseup");
+							return false;
+						});
+					});
+			  
+			 //$("#copyTarget").focus(function() {
+			 $("body").on( 'focus', '#copyTarget', function() {
+				
+						var $this = $(this);
+						$this.select();
+
+						// Work around Chrome's little problem
+						$this.mouseup(function() {
+							// Prevent further mouseup intervention
+							$this.unbind("mouseup");
+							return false;
+						});
+					});
+			  
+			  
 			  
 				  
 				
 		
     });//Main close
+	
+	
 
 	//Function call from function.js.php
 	// Showing Upload progress bar

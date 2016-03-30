@@ -569,6 +569,16 @@ elseif (isset ($_GET['end_async']))
 			 $direct_Dwnload_url = get_tiny_url($direct_Dwnload);
 			 
 			 
+			 //Generate Random nbr to store url to Clip Board
+			 $nbr1 = mt_rand(5, 15);
+			 $nbr1  =  $nbr1.time();
+			 $cfg['generate_number'][$nbr1] = $dnld_link_1;
+			 $generate_number1  = $nbr1;			
+			 $clipBoardUrl =  $cfg['web_root'].'f.php?h='.$generate_number1.'&amp;mail=1'; 			 
+			 $clipBoardUrl_1 =  $cfg['web_root'].'f.php?h='.$generate_number1;			 
+			 jirafeau_export_cfg_custom($cfg);
+			  //@END Generate Random nbr to store url to Clip Board
+			 
 			 
 
 			  echo '<div class="send-links-ht"><div class="download_links">'; 
@@ -577,6 +587,7 @@ elseif (isset ($_GET['end_async']))
 				  //22 March 2016  $_GET['end_async']
 				 echo '<form action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
 				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>				  
+				       <input type="hidden" name="clipBoardUrl" value="'.$clipBoardUrl_1.'"/>				  
 					   <span class="download_link">
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Download page').'"/>
 					   </span>
@@ -593,8 +604,45 @@ elseif (isset ($_GET['end_async']))
 					  
 					   <span class="download_link">
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
+					 
 					   </span>
 					   </form>';
+					   
+					   
+					   
+				
+				 // Copy to clipboard
+			 	 //29 March 2016 $_GET['end_async'] 
+			    $user_agent = getenv("HTTP_USER_AGENT");
+				if(strpos($user_agent, "Win") !== FALSE)
+				$os = "Windows";
+				elseif(strpos($user_agent, "Mac") !== FALSE)
+				$os = "Mac";
+				if (isset($_SERVER['HTTP_USER_AGENT'])) {
+					$agent = $_SERVER['HTTP_USER_AGENT'];
+					
+				}
+				 
+				if($os === "Mac"){
+					if(stripos( $agent, 'Safari') !== false){
+					 echo '<span class="download_link clip-board-container">	 				   
+					   <a  href="javascript:void(0);" data-clipboard-action="copy" aria-label="" class="btn-aysMacSafari" id="copyButton-safari" data-clipboard-target="#copyTarget">'.t('Copy Link to Clipboard <div class="text-copied-upload" style="display:none;">Copied!</div>').'</a>
+					   <textarea  id="copyTarget" class="clip-board-txt" name="" readonly="readonly">'.$clipBoardUrl.'</textarea>					 
+					   </span> ';
+					}else{
+						 echo '<span class="download_link clip-board-container">	 				   
+					   <a  href="javascript:void(0);" data-clipboard-action="copy" aria-label="" class="btn-aysMacEls" id="copyButton" data-clipboard-target="#copyTarget">'.t('Copy Link to Clipboard <div class="text-copied-upload" style="display:none;">Copied!</div>').'</a>
+					   <textarea  id="copyTarget" class="clip-board-txt" name="" readonly="readonly">'.$clipBoardUrl.'</textarea>					 
+					   </span> ';	
+						
+					}
+				 }else{
+				 echo '<span class="download_link clip-board-container">	 				   
+					   <a  href="javascript:void(0);" data-clipboard-action="copy" aria-label="" class="btn-aysWinEls" id="copyButton" data-clipboard-target="#copyTarget">'.t('Copy Link to Clipboard <div class="text-copied-upload" style="display:none;">Copied!</div>').'</a>
+					   <textarea  id="copyTarget" class="clip-board-txt" name="" readonly="readonly">'.$clipBoardUrl.'</textarea>					 
+					   </span> ';	
+				 }					   
+				//@END Copy to clipboard 
 				
 				//IMage  preview
 				$counter = 1;
@@ -638,6 +686,7 @@ elseif (isset ($_GET['end_async']))
 			     //echo '<div class="send_links"><a  target="_blank" href="'.$h.$s.'" >Share your file(s)</a></div>';
 				  echo '<form id="share_form" action="'.$cfg['web_root'].'sendlink.php" method="post">
 				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>
+					   <input type="hidden" name="generate_number" value="'.$nbr1.'"/>
 					   <input type="hidden" name="s" value="1"/>					  
 					    <div class="send_links"><a class="share-link" href="javascript:void(0);" >Share your file(s)</a></div>
 					   </form>';
@@ -689,6 +738,19 @@ elseif (isset ($_GET['end_classic']))
 		$link_del_list_all = implode("@",$link_del_listArr);
 		
 		   if(!empty($link_list_all)){	
+		   
+		   
+		    //Generate Random nbr to store url to Clip Board
+			 $nbr1 = mt_rand(5, 15);
+			 $nbr1  =  $nbr1.time();
+			 $cfg['generate_number'][$nbr1] = $link_list_all;
+			 $generate_number1  = $nbr1;			
+			 $clipBoardUrl =  $cfg['web_root'].'f.php?h='.$generate_number1.'&amp;mail=1'; 			 
+			 $clipBoardUrl_1 =  $cfg['web_root'].'f.php?h='.$generate_number1;			 
+			 jirafeau_export_cfg_custom($cfg);
+			  //@END Generate Random nbr to store url to Clip Board
+			 
+		   
 
              $dwnload = $cfg['web_root'].'f.php?h='.$link_list_all; 
 			// $dwnload_url = get_tiny_url($dwnload);
@@ -701,7 +763,8 @@ elseif (isset ($_GET['end_classic']))
 			
 			//22 March 2016
 				 echo '<form action="'.$cfg['web_root'].'f.php" method="post" target="_blank">
-				       <input type="hidden" name="h" value="'.$link_list_all.'"/>				  
+				       <input type="hidden" name="h" value="'.$link_list_all.'"/>
+                        <input type="hidden" name="clipBoardUrl" value="'.$clipBoardUrl_1.'"/>					   
 					   <span class="download_link">
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Download page').'"/>
 					   </span>
@@ -718,7 +781,21 @@ elseif (isset ($_GET['end_classic']))
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
 					   </span>
 					   </form>';
-			 
+					   
+					   
+			  // Copy to clipboard
+			 	 //29 March 2016 $_GET['classic'] 
+
+					
+				 echo '<span class="download_link clip-board-container">'.	 				   
+					   '<a  href="javascript:void(0);" class="btn-classic" data-clipboard-action="copy" aria-label="" data-clipboard-text="'.$clipBoardUrl.'" id="copyButton-safari" data-clipboard-target="#copyTarget">'.t('Copy Link to Clipboard <div class="text-copied-upload" style="display:none;">Copied!</div>').'</a>'.
+					   
+					   '<textarea  id="copyTarget" class="clip-board-txt" name="" >'.$clipBoardUrl.'</textarea>'.
+					   '</span> ';
+
+
+	
+				//@END Copy to clipboard
 			 
 				
 			//View Link	 Image
@@ -766,6 +843,7 @@ elseif (isset ($_GET['end_classic']))
 				 
 				 echo '<form id="share_form" action="'.$cfg['web_root'].'sendlink.php" method="post">
 				       <input type="hidden" name="h" value="'.$link_list_all.'"/>
+					   <input type="hidden" name="generate_number" value="'.$nbr1.'"/>
 					   <input type="hidden" name="s" value="1"/>					  
 					    <div class="send_links"><a class="share-link" href="javascript:void(0);" >Share your file(s)</a></div>
 					   </form>';

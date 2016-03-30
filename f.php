@@ -285,6 +285,11 @@ if (!empty ($link['key']))
         echo '" ' .
              'method = "post" id = "submit_post">'; ?>
              <input type = "hidden" name = "jirafeau" value = "<?php echo JIRAFEAU_VERSION ?>"/><?php
+			 if(!isset($_POST['clipBoardUrl'])){
+				
+				 $_POST['clipBoardUrl'] =  $cfg['web_root'].'f.php?h='.$_GET['h'];
+			 }
+			 echo '<textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly" style="left:-2000px;position:absolute;" >'.$_POST['clipBoardUrl'].'&amp;mail=1</textarea>';
 
         echo '<fieldset>' .
              '<legend>' . t('Password protection') .
@@ -302,7 +307,18 @@ if (!empty ($link['key']))
 				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon">   <a class="dn-icon-pwd" id="'.$links_dn.'" href="javascript:void(0);"> </a> </span>   ';
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
 				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>'; 
+				 
+				 echo '<div class="clipBoardUrl_list">				 
+					   <textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly">'.$_POST['clipBoardUrl'].'&amp;mail=1 </textarea>
+                    <span class="download-icon clip-icon"><a  href="javascript:void(0);" class="copyButton1 download-icon" id="copyButton1" data-clipboard-target="#clip-board" >'.t('').'</a>
+					<span class="text-copied" style="display:none;">Copied!</span>
+					</span>
+                    </div>';
+				 
+				 
+				 
 				 echo '</div>';
+				 
 				$files_counter++; 
 			}
 			 
@@ -369,7 +385,7 @@ if (!empty ($link['key']))
 }
 
 
-//download page_below
+//download page_below  Show all Download list
 
 if (!$password_challenged && !$do_download && !$do_preview)
 {
@@ -382,11 +398,14 @@ if (!$password_challenged && !$do_download && !$do_preview)
         echo '" ' .
              'method = "post" id = "submit_post">'; ?>
              <input type = "hidden" name = "jirafeau" value = "<?php echo JIRAFEAU_VERSION ?>"/><?php
+			 echo '<textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly" style="left:-2000px;position:absolute;" >'.$_POST['clipBoardUrl'].'&amp;mail=1</textarea>';
+			 
         echo '<fieldset class="dwn_fieldset"><legend>' . htmlspecialchars($link['file_name']) . '</legend><div class="dwn-file-list">';
             echo  '<p class="download-title">  Download </p>';
             echo '<div class="file_list_wrapper">';
+			
 			 $zipEstimate = "";
-			 $files_counter= 0;
+			 $files_counter= 1;
 			foreach($link_nameArr as $links_dn){
 				$link_dn = jirafeau_get_link ($links_dn);
 				$zipEstimate +=  $link_dn['file_size'];
@@ -394,7 +413,17 @@ if (!$password_challenged && !$do_download && !$do_preview)
 				 echo '<div class="fileList">';				 
 				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon"><a id="'.$links_dn.'" class="dn-icon" href="javascript:void(0);"></a></span>   ';
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
-				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>'; 
+				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>';
+				 
+				 
+                echo '<div class="clipBoardUrl_list">				 
+					   <textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly">'.$_POST['clipBoardUrl'].'&amp;mail=1 </textarea>
+                    <span class="download-icon clip-icon"><a  href="javascript:void(0);" class="copyButton1 download-icon" id="copyButton1" data-clipboard-target="#clip-board" >'.t('').'</a>
+					<span class="text-copied" style="display:none;">Copied!</span>
+					</span>
+                    </div>';
+
+							
 				 echo '</div>';
 				$files_counter++; 
 			}
