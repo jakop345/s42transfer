@@ -286,8 +286,9 @@ if (!empty ($link['key']))
              'method = "post" id = "submit_post">'; ?>
              <input type = "hidden" name = "jirafeau" value = "<?php echo JIRAFEAU_VERSION ?>"/><?php
 			 if(!isset($_POST['clipBoardUrl'])){
-				
+				if(isset($_GET['h']) && $_GET['h'] !=""){
 				 $_POST['clipBoardUrl'] =  $cfg['web_root'].'f.php?h='.$_GET['h'];
+				}
 			 }
 			 echo '<textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly" style="left:-2000px;position:absolute;" >'.$_POST['clipBoardUrl'].'&amp;mail=1</textarea>';
 
