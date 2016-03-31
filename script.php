@@ -601,7 +601,7 @@ elseif (isset ($_GET['end_async']))
 				 echo '<form action="'.$cfg['web_root'].'f.php" method="post">
 				       <input type="hidden" name="h" value="'.$dnld_link_1.'"/>
 					   <input type="hidden" name="d" value="1"/>
-					  
+					  <input type="hidden" name="clipBoardUrl" value="'.$clipBoardUrl_1.'"/>
 					   <span class="download_link">
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
 					 
@@ -776,7 +776,7 @@ elseif (isset ($_GET['end_classic']))
 				 echo '<form action="'.$cfg['web_root'].'f.php" method="post">
 				       <input type="hidden" name="h" value="'.$link_list_all.'"/>
 					   <input type="hidden" name="d" value="1"/>
-					  
+					  <input type="hidden" name="clipBoardUrl" value="'.$clipBoardUrl_1.'"/>
 					   <span class="download_link">
 					   <input type="submit" class="download_btn" name="direct_download" value="'.t('Direct download').'"/>
 					   </span>
