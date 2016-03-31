@@ -288,6 +288,8 @@ if (!empty ($link['key']))
 			 if(!isset($_POST['clipBoardUrl'])){
 				if(isset($_GET['h']) && $_GET['h'] !=""){
 				 $_POST['clipBoardUrl'] =  $cfg['web_root'].'f.php?h='.$_GET['h'];
+				}else{
+					 $_POST['clipBoardUrl'] =  "";
 				}
 			 }
 			 echo '<textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly" style="left:-2000px;position:absolute;" >'.$_POST['clipBoardUrl'].'&amp;mail=1</textarea>';
