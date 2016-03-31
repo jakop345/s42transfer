@@ -310,14 +310,14 @@ if (!empty ($link['key']))
 				 echo  '<span class="f_name">'.$link_dn['file_name'].'</span> <span class="download-icon">   <a class="dn-icon-pwd" id="'.$links_dn.'" href="javascript:void(0);"> </a> </span>   ';
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
 				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>'; 
-				 
+				 if(isset($_POST['clipBoardUrl'])){
 				 echo '<div class="clipBoardUrl_list">				 
 					   <textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly">'.$_POST['clipBoardUrl'].'&amp;mail=1 </textarea>
                     <span class="download-icon clip-icon"><a  href="javascript:void(0);" class="copyButton1 download-icon" id="copyButton1" data-clipboard-target="#clip-board" >'.t('').'</a>
 					<span class="text-copied" style="display:none;">Copied!</span>
 					</span>
                     </div>';
-				 
+				 }
 				 
 				 
 				 echo '</div>';
@@ -418,14 +418,14 @@ if (!$password_challenged && !$do_download && !$do_preview)
 				 echo  '<span class="f_size">'.formatSizeUnits($link_dn['file_size']).' </span>'; 
 				 //echo  '<span class="download-icon"><a class="dn-icon" href="'.$cfg['web_root'] . '/f.php?h='.$links_dn.'&amp;d=1"><img src="'.$cfg['web_root'].'media/'.$cfg['style'].'/download.svg"/></a></span>';
 				 
-				 
+				  if(isset($_POST['clipBoardUrl'])){
                 echo '<div class="clipBoardUrl_list">				 
 					   <textarea  id="clip-board" class="clip-board-txt-dn-page" name="" readonly="readonly">'.$_POST['clipBoardUrl'].'&amp;mail=1 </textarea>
                     <span class="download-icon clip-icon"><a  href="javascript:void(0);" class="copyButton1 download-icon" id="copyButton1" data-clipboard-target="#clip-board" >'.t('').'</a>
 					<span class="text-copied" style="display:none;">Copied!</span>
 					</span>
                     </div>';
-
+				  }
 							
 				 echo '</div>';
 				$files_counter++; 
